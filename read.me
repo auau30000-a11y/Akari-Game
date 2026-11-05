@@ -57,7 +57,7 @@
 https://auau30000-a11y.github.io/Akari-Game/
 ```
 ※キャッシュが残っている場合は、URL末尾にバージョン番号を付与してください：  
-`https://auau30000-a11y.github.io/Akari-Game/?v=10`
+`https://auau30000-a11y.github.io/Akari-Game/?v=11`
 
 ---
 

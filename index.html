@@ -1103,7 +1103,7 @@
 
     <!-- タイトルマスコット画像 -->
     <div class="title-mascot-box">
-      <img src="poke_pikachu.png?v=v10" alt="BOSS" class="pixel-art-img float-anim" id="title-mascot-img">
+      <img src="poke_pikachu.png?v=v11" alt="BOSS" class="pixel-art-img float-anim" id="title-mascot-img">
     </div>
 
     <div class="title-menu">
@@ -1161,7 +1161,7 @@
       <!-- 決戦: ミュウツー（オーブ6個で解放） -->
       <div class="world-card mewtwo-theme locked" id="card-world-mewtwo">
         <div class="world-thumb-box" style="border-color: #a855f7;">
-          <img src="poke_mewtwo.png?v=v10" alt="MEWTWO" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+          <img src="poke_mewtwo.png?v=v11" alt="MEWTWO" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: #d8b4fe;">
@@ -1176,7 +1176,7 @@
       <!-- ワールド1: ポケモン -->
       <div class="world-card poke-theme" id="card-world-pokemon">
         <div class="world-thumb-box">
-          <img src="poke_pikachu.png?v=v10" alt="POKEMON" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+          <img src="poke_pikachu.png?v=v11" alt="POKEMON" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: #ffcb05;">
@@ -1192,7 +1192,7 @@
       <!-- ワールド2: FF5 -->
       <div class="world-card ff5-theme" id="card-world-ff5">
         <div class="world-thumb-box">
-          <img src="ff5_bahamut.png?v=v10" alt="FF5" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+          <img src="ff5_bahamut.png?v=v11" alt="FF5" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: #ff9d5c;">
@@ -1208,7 +1208,7 @@
       <!-- ワールド3: 聖剣伝説3 -->
       <div class="world-card seiken-theme" id="card-world-seiken">
         <div class="world-thumb-box">
-          <img src="boss_dangaard.png?v=v10" alt="聖剣3" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+          <img src="boss_dangaard.png?v=v11" alt="聖剣3" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: var(--text-gold);">
@@ -1224,7 +1224,7 @@
       <!-- ワールド4: プリキュアのせかい -->
       <div class="world-card precure-theme" id="card-world-precure">
         <div class="world-thumb-box">
-          <img src="precure_idol.png?v=v10" alt="プリキュア" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+          <img src="precure_idol.png?v=v11" alt="プリキュア" style="max-width: 100%; max-height: 100%; object-fit: contain;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: #ff99cc;">
@@ -1260,7 +1260,7 @@
       </div>
 
       <div class="monster-stage">
-        <img src="poke_pikachu.png?v=v10" alt="BOSS" class="boss-sprite-img float-anim" id="boss-sprite">
+        <img src="poke_pikachu.png?v=v11" alt="BOSS" class="boss-sprite-img float-anim" id="boss-sprite">
       </div>
 
       <div class="effect-overlay">
@@ -1309,7 +1309,7 @@
       <div class="result-title">🎉 BOSS DEFEATED!</div>
       <div class="result-stars" id="clear-stars">★★★</div>
       <div style="width: 110px; height: 90px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
-        <img id="clear-boss-preview" src="poke_pikachu.png?v=v10" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+        <img id="clear-boss-preview" src="poke_pikachu.png?v=v11" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
       </div>
       <div class="result-msg" id="clear-message">
         強敵を 撃破した！<br>
@@ -1561,188 +1561,199 @@ class SoundEngine {
   // プリキュア専用サウンド（かわいい・痛くない・楽しい！）
   // ==========================================
   playHalation() {
-    // マジェスティックハレーション：神秘的なベル＆ハープのきらめくアルペジオ
+    if (!this.enabled) return;
     this.init();
-    const now = this.ctx.currentTime;
-    const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98]; // C5, E5, G5, C6, E6, G6
-    notes.forEach((freq, idx) => {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, now + idx * 0.05);
-      
-      gain.gain.setValueAtTime(0, now + idx * 0.05);
-      gain.gain.linearRampToValueAtTime(0.2, now + idx * 0.05 + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.45);
-      
-      osc.connect(gain);
-      gain.connect(this.master);
-      osc.start(now + idx * 0.05);
-      osc.stop(now + idx * 0.05 + 0.46);
-    });
+    if (!this.ctx) return;
+    try {
+      const dest = this.getDest();
+      const now = this.ctx.currentTime;
+      const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98];
+      notes.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+        gain.gain.setValueAtTime(0, now + idx * 0.05);
+        gain.gain.linearRampToValueAtTime(0.2, now + idx * 0.05 + 0.02);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.45);
+        osc.connect(gain);
+        gain.connect(dest);
+        osc.start(now + idx * 0.05);
+        osc.stop(now + idx * 0.05 + 0.46);
+      });
+    } catch(e) { console.warn(e); }
   }
 
   playSkyPunch() {
-    // スカイパンチ：爽快な風切り音 ＋ ポーンと弾ける可愛い星の音
+    if (!this.enabled) return;
     this.init();
-    const now = this.ctx.currentTime;
-    
-    // ポップ音
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(350, now);
-    osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
-    
-    gain.gain.setValueAtTime(0.3, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-    
-    osc.connect(gain);
-    gain.connect(this.master);
-    osc.start(now);
-    osc.stop(now + 0.36);
-
-    // キラリン音
-    const osc2 = this.ctx.createOscillator();
-    const gain2 = this.ctx.createGain();
-    osc2.type = 'triangle';
-    osc2.frequency.setValueAtTime(1320, now + 0.08);
-    gain2.gain.setValueAtTime(0.18, now + 0.08);
-    gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
-    osc2.connect(gain2);
-    gain2.connect(this.master);
-    osc2.start(now + 0.08);
-    osc2.stop(now + 0.41);
-  }
-
-  playPrism() {
-    // プリズムショット：パステルトイピアノ風の可愛いポコポコメロディ
-    this.init();
-    const now = this.ctx.currentTime;
-    const freqs = [659.25, 783.99, 987.77, 1318.51]; // E5, G5, B5, E6
-    freqs.forEach((freq, idx) => {
+    if (!this.ctx) return;
+    try {
+      const dest = this.getDest();
+      const now = this.ctx.currentTime;
+      
       const osc = this.ctx.createOscillator();
       const gain = this.ctx.createGain();
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(freq, now + idx * 0.07);
-      
-      gain.gain.setValueAtTime(0.24, now + idx * 0.07);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
-      
+      osc.frequency.setValueAtTime(350, now);
+      osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
+      gain.gain.setValueAtTime(0.3, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
       osc.connect(gain);
-      gain.connect(this.master);
-      osc.start(now + idx * 0.07);
-      osc.stop(now + idx * 0.07 + 0.23);
-    });
+      gain.connect(dest);
+      osc.start(now);
+      osc.stop(now + 0.36);
+
+      const osc2 = this.ctx.createOscillator();
+      const gain2 = this.ctx.createGain();
+      osc2.type = 'triangle';
+      osc2.frequency.setValueAtTime(1320, now + 0.08);
+      gain2.gain.setValueAtTime(0.18, now + 0.08);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+      osc2.connect(gain2);
+      gain2.connect(dest);
+      osc2.start(now + 0.08);
+      osc2.stop(now + 0.41);
+    } catch(e) { console.warn(e); }
+  }
+
+  playPrism() {
+    if (!this.enabled) return;
+    this.init();
+    if (!this.ctx) return;
+    try {
+      const dest = this.getDest();
+      const now = this.ctx.currentTime;
+      const freqs = [659.25, 783.99, 987.77, 1318.51];
+      freqs.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+        gain.gain.setValueAtTime(0.24, now + idx * 0.07);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
+        osc.connect(gain);
+        gain.connect(dest);
+        osc.start(now + idx * 0.07);
+        osc.stop(now + idx * 0.07 + 0.23);
+      });
+    } catch(e) { console.warn(e); }
   }
 
   playWonderfulTact() {
-    // ワンダフルタクト：魔法のタクトがキュルルンと回転するファンタジーサウンド
+    if (!this.enabled) return;
     this.init();
-    const now = this.ctx.currentTime;
-    
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = 'sine';
-    
-    // 周波数がスルスルと駆け上がる
-    osc.frequency.setValueAtTime(440, now);
-    osc.frequency.exponentialRampToValueAtTime(1400, now + 0.25);
-    
-    gain.gain.setValueAtTime(0.22, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
-    
-    osc.connect(gain);
-    gain.connect(this.master);
-    osc.start(now);
-    osc.stop(now + 0.39);
+    if (!this.ctx) return;
+    try {
+      const dest = this.getDest();
+      const now = this.ctx.currentTime;
+      
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.exponentialRampToValueAtTime(1400, now + 0.25);
+      gain.gain.setValueAtTime(0.22, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+      osc.connect(gain);
+      gain.connect(dest);
+      osc.start(now);
+      osc.stop(now + 0.39);
 
-    // ベルの余韻
-    const bell = this.ctx.createOscillator();
-    const bGain = this.ctx.createGain();
-    bell.type = 'triangle';
-    bell.frequency.setValueAtTime(1760, now + 0.15);
-    bGain.gain.setValueAtTime(0.2, now + 0.15);
-    bGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-    bell.connect(bGain);
-    bGain.connect(this.master);
-    bell.start(now + 0.15);
-    bell.stop(now + 0.51);
+      const bell = this.ctx.createOscillator();
+      const bGain = this.ctx.createGain();
+      bell.type = 'triangle';
+      bell.frequency.setValueAtTime(1760, now + 0.15);
+      bGain.gain.setValueAtTime(0.2, now + 0.15);
+      bGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+      bell.connect(bGain);
+      bGain.connect(dest);
+      bell.start(now + 0.15);
+      bell.stop(now + 0.51);
+    } catch(e) { console.warn(e); }
   }
 
   playCrescendo() {
-    // ウインククレッシェンド：トクン♡と鼓動するようにハートが大きくなる音
+    if (!this.enabled) return;
     this.init();
-    const now = this.ctx.currentTime;
-    
-    // 心音風ベース
-    const bass = this.ctx.createOscillator();
-    const bGain = this.ctx.createGain();
-    bass.type = 'sine';
-    bass.frequency.setValueAtTime(130, now);
-    bass.frequency.exponentialRampToValueAtTime(65, now + 0.18);
-    bGain.gain.setValueAtTime(0.35, now);
-    bGain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-    bass.connect(bGain);
-    bGain.connect(this.master);
-    bass.start(now);
-    bass.stop(now + 0.26);
+    if (!this.ctx) return;
+    try {
+      const dest = this.getDest();
+      const now = this.ctx.currentTime;
+      
+      const bass = this.ctx.createOscillator();
+      const bGain = this.ctx.createGain();
+      bass.type = 'sine';
+      bass.frequency.setValueAtTime(130, now);
+      bass.frequency.exponentialRampToValueAtTime(65, now + 0.18);
+      bGain.gain.setValueAtTime(0.35, now);
+      bGain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+      bass.connect(bGain);
+      bGain.connect(dest);
+      bass.start(now);
+      bass.stop(now + 0.26);
 
-    // クレッシェンドするきらめき音
-    const chime = this.ctx.createOscillator();
-    const cGain = this.ctx.createGain();
-    chime.type = 'triangle';
-    chime.frequency.setValueAtTime(880, now + 0.1);
-    chime.frequency.linearRampToValueAtTime(1500, now + 0.35);
-    cGain.gain.setValueAtTime(0.05, now + 0.1);
-    cGain.gain.linearRampToValueAtTime(0.25, now + 0.3);
-    cGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
-    chime.connect(cGain);
-    cGain.connect(this.master);
-    chime.start(now + 0.1);
-    chime.stop(now + 0.51);
+      const chime = this.ctx.createOscillator();
+      const cGain = this.ctx.createGain();
+      chime.type = 'triangle';
+      chime.frequency.setValueAtTime(880, now + 0.1);
+      chime.frequency.linearRampToValueAtTime(1500, now + 0.35);
+      cGain.gain.setValueAtTime(0.05, now + 0.1);
+      cGain.gain.linearRampToValueAtTime(0.25, now + 0.3);
+      cGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+      chime.connect(cGain);
+      cGain.connect(dest);
+      chime.start(now + 0.1);
+      chime.stop(now + 0.51);
+    } catch(e) { console.warn(e); }
   }
 
   playEmotion() {
-    // ハイエモーション：最高潮に盛り上がるハッピーなアイドルファンファーレ
+    if (!this.enabled) return;
     this.init();
-    const now = this.ctx.currentTime;
-    const chord = [523.25, 659.25, 783.99, 1046.50]; // Cメジャー
-    chord.forEach((freq, idx) => {
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(freq, now + idx * 0.04);
-      gain.gain.setValueAtTime(0.18, now + idx * 0.04);
-      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.04 + 0.4);
-      osc.connect(gain);
-      gain.connect(this.master);
-      osc.start(now + idx * 0.04);
-      osc.stop(now + idx * 0.04 + 0.41);
-    });
+    if (!this.ctx) return;
+    try {
+      const dest = this.getDest();
+      const now = this.ctx.currentTime;
+      const chord = [523.25, 659.25, 783.99, 1046.50];
+      chord.forEach((freq, idx) => {
+        const osc = this.ctx.createOscillator();
+        const gain = this.ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now + idx * 0.04);
+        gain.gain.setValueAtTime(0.18, now + idx * 0.04);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.04 + 0.4);
+        osc.connect(gain);
+        gain.connect(dest);
+        osc.start(now + idx * 0.04);
+        osc.stop(now + idx * 0.04 + 0.41);
+      });
+    } catch(e) { console.warn(e); }
   }
 
   playPrecureJoy() {
-    // プリキュアの可愛い喜び音（ピョコリン♪）
+    if (!this.enabled) return;
     this.init();
-    const now = this.ctx.currentTime;
-    const osc = this.ctx.createOscillator();
-    const gain = this.ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(523.25, now);
-    osc.frequency.setValueAtTime(783.99, now + 0.08);
-    osc.frequency.setValueAtTime(1046.50, now + 0.16);
-    
-    gain.gain.setValueAtTime(0.22, now);
-    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
-    
-    osc.connect(gain);
-    gain.connect(this.master);
-    osc.start(now);
-    osc.stop(now + 0.36);
+    if (!this.ctx) return;
+    try {
+      const dest = this.getDest();
+      const now = this.ctx.currentTime;
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(523.25, now);
+      osc.frequency.setValueAtTime(783.99, now + 0.08);
+      osc.frequency.setValueAtTime(1046.50, now + 0.16);
+      gain.gain.setValueAtTime(0.22, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      osc.connect(gain);
+      gain.connect(dest);
+      osc.start(now);
+      osc.stop(now + 0.36);
+    } catch(e) { console.warn(e); }
   }
 
-    playPlayerDamage() {
+  playPlayerDamage() {
     this.init();
     this.playNoise('lowpass', 900, 50, 0.3, 0.45, 0);
     this.playTone(160, 'square', 0.25, 0.35, 0, 35);
@@ -1830,7 +1841,7 @@ const sound = new SoundEngine();
 // ==========================================
 // 2. モンスターデータ（ポケモン ＆ FF5 ＆ 聖剣3）
 // ==========================================
-const GAME_ASSET_VERSION = "v10";
+const GAME_ASSET_VERSION = "v11";
 const WORLDS_DATA = {
   pokemon: {
     id: "pokemon",
@@ -3545,6 +3556,8 @@ class GameApp {
     if (this.isInputLocked) return;
     this.isInputLocked = true;
 
+    try {
+
     const isCorrect = (selectedVal === this.currentProblem.answer);
 
     if (isCorrect) {
@@ -3635,6 +3648,10 @@ class GameApp {
           this.isInputLocked = false;
         }, 700);
       }
+    }
+    } catch(err) {
+      console.error('handleAnswer error:', err);
+      this.isInputLocked = false;
     }
   }
 
