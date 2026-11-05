@@ -2327,15 +2327,17 @@ class GameApp {
       { id: 'black', name: 'くろのオーブ', color: '#a855f7', title: 'やみの力' }
     ];
 
-    // ランダム発動技一覧
+    // ランダム発動技一覧（全7種：波動砲も含め完全ランダム）
     this.battleSkills = [
-      { name: "🔥 かえんほうしゃ！", sound: "playFlame", overlay: "effect-flame" },
-      { name: "⚡ １０まんボルト！", sound: "playThunder", overlay: "effect-thunder" },
-      { name: "❄️ ふぶき！", sound: "playBlizzard", overlay: "effect-blizzard" },
-      { name: "🌊 ハイドロポンプ！", sound: "playHydro", overlay: "effect-water" },
-      { name: "🌀 サイコキネシス！", sound: "playPsychic", overlay: "effect-psychic" },
-      { name: "⚔️ つばめがえし！", sound: "playSlash", overlay: "effect-slash" }
+      { id: "flame", name: "🔥 かえんほうしゃ！", sound: "playFlame", overlay: "effect-flame" },
+      { id: "thunder", name: "⚡ １０まんボルト！", sound: "playThunder", overlay: "effect-thunder" },
+      { id: "blizzard", name: "❄️ ふぶき！", sound: "playBlizzard", overlay: "effect-blizzard" },
+      { id: "hydro", name: "🌊 ハイドロポンプ！", sound: "playHydro", overlay: "effect-water" },
+      { id: "psychic", name: "🌀 サイコキネシス！", sound: "playPsychic", overlay: "effect-psychic" },
+      { id: "slash", name: "⚔️ つばめがえし！", sound: "playSlash", overlay: "effect-slash" },
+      { id: "beam", name: "💥 かいしんの はどうほう！", sound: "playBeam", overlay: null }
     ];
+    this.lastSkillIndex = -1;
 
     this.mascotImages = [
       "poke_pikachu.png",
@@ -2840,15 +2842,8 @@ class GameApp {
       this.combo++;
       this.score += (100 * this.stage) + (this.combo * 25);
 
-      // 3連続コンボ、または確率で「かいしんのはどうほう」
-      const isCritical = (this.combo >= 3);
-      if (isCritical) {
-        sound.playBeam();
-        this.triggerBeamEffect();
-      } else {
-        // 多彩なランダムわざ発動！
-        this.triggerRandomSkill();
-      }
+      // 毎問必ずランダムに技を発動！（直前と被らないように多彩に出現）
+      const isCritical = this.triggerRandomSkill();
 
       setTimeout(() => {
         sound.playDamage();
@@ -2914,17 +2909,36 @@ class GameApp {
     }
   }
 
-  // 多彩なランダムわざ発動演出
+  // 多彩なランダムわざ発動演出（直前と同じ技が続かないよう抽選）
   triggerRandomSkill() {
-    const skill = this.battleSkills[Math.floor(Math.random() * this.battleSkills.length)];
+    let availableIndices = [];
+    for (let i = 0; i < this.battleSkills.length; i++) {
+      if (i !== this.lastSkillIndex) availableIndices.push(i);
+    }
+    const chosenIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+    this.lastSkillIndex = chosenIndex;
+    const skill = this.battleSkills[chosenIndex];
+
     if (sound[skill.sound]) sound[skill.sound]();
 
-    const overlay = document.getElementById(skill.overlay);
-    if (overlay) {
-      overlay.style.display = 'block';
-      setTimeout(() => { overlay.style.display = 'none'; }, 450);
+    if (skill.id === 'beam') {
+      this.effectBeam.style.display = 'block';
+      setTimeout(() => { this.effectBeam.style.display = 'none'; }, 600);
+    } else {
+      const overlay = document.getElementById(skill.overlay);
+      if (overlay) {
+        overlay.style.display = 'block';
+        setTimeout(() => { overlay.style.display = 'none'; }, 450);
+      }
     }
-    this.showFloatText(skill.name);
+
+    let text = skill.name;
+    if (this.combo >= 2) {
+      text += ' (' + this.combo + 'コンボ!)';
+    }
+    this.showFloatText(text);
+
+    return (skill.id === 'beam');
   }
 
   triggerMagicEffect() {
