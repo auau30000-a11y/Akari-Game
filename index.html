@@ -1959,7 +1959,7 @@ class MathProblemGenerator {
   }
 
   static generate(worldKey, stage) {
-    let num1, num2, operator, answer;
+    let num1, num2, operator, answer, formulaText;
 
     if (worldKey === 'mewtwo') {
       // ミュウツー決戦：小学2年生の最難関・精鋭問題（九九の壁・2桁繰り上がり足し算・2桁繰り下がり引き算・3つの数）
@@ -2603,29 +2603,8 @@ class MathProblemGenerator {
       }
     }
 
-    const formulaText = `${num1} ${operator} ${num2} ＝ ？`;
-
-    // 4択生成
-    const choices = new Set([answer]);
-    let loopCount = 0;
-    while (choices.size < 4 && loopCount < 50) {
-      loopCount++;
-      const offset = [-2, -1, 1, 2, 10, -10][Math.floor(Math.random() * 6)];
-      let dummy = answer + offset;
-      if (dummy < 0) dummy = Math.abs(dummy) + 1;
-      if (dummy !== answer) choices.add(dummy);
-    }
-    let fallback = 1;
-    while (choices.size < 4) {
-      choices.add(answer + fallback);
-      fallback++;
-    }
-
-    return {
-      formula: formulaText,
-      answer: answer,
-      choices: Array.from(choices).sort(() => Math.random() - 0.5)
-    };
+    formulaText = `${num1} ${operator} ${num2} ＝ ？`;
+    return this.createChoices(formulaText, answer);
   }
 }
 
