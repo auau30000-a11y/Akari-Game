@@ -343,6 +343,21 @@
       border-color: #ffe066;
     }
 
+    /* プリキュアテーマ */
+    .world-card.precure-theme {
+      border-color: #ff66b2;
+      background: linear-gradient(145deg, #2e0e24 0%, #12030d 100%);
+    }
+    .world-card.precure-theme:active {
+      border-color: #ff99cc;
+      background: linear-gradient(145deg, #421534 0%, #1a0514 100%);
+    }
+    .world-card.precure-theme .world-thumb-box {
+      border-color: #ff66b2;
+      background: radial-gradient(circle, #5e1c41 0%, #1a0512 100%);
+    }
+
+
     .world-thumb-box {
       width: 66px;
       height: 66px;
@@ -1096,11 +1111,28 @@
             <span>⚔️</span> 聖剣伝説のしれん
           </div>
           <div class="world-sub">
-            フルメタルハガー、マシンゴーレム、ツェンカー、神獣ダンガード！ (全5ステージ)
+            神獣ダンガード・イビルシャーマンら強敵（全9ステージ）
           </div>
-          <div id="seiken-progress-badge" class="world-status-badge badge-progress">STAGE 1 / 5</div>
+          <div id="seiken-progress-badge" class="world-status-badge badge-progress">STAGE 1 / 9</div>
         </div>
       </div>
+
+      <!-- ワールド4: プリキュアのせかい -->
+      <div class="world-card precure-theme" id="card-world-precure">
+        <div class="world-thumb-box">
+          <img src="precure_idol.png" alt="プリキュア" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+        </div>
+        <div class="world-info">
+          <div class="world-title" style="color: #ff99cc;">
+            <span>🌸</span> プリキュアのせかい
+          </div>
+          <div class="world-sub">
+            はぐっと・ひろプリ・キミとアイドル 全15ステージ
+          </div>
+          <div id="precure-progress-badge" class="world-status-badge badge-progress">未挑戦</div>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1715,6 +1747,166 @@ const WORLDS_DATA = {
         stageName: "STAGE 5: 雲海の頂上",
         image: "boss_dangaard.png",
         bgGrad: "radial-gradient(circle at 50% 55%, #312147 0%, #0e0814 95%)"
+      },
+      {
+        id: 6,
+        name: "オーガボックス",
+        title: "宝箱に擬態した凶悪モンスター",
+        stageName: "STAGE 6: 宝物庫の罠",
+        image: "boss_ogre_box.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #3d2a1a 0%, #140d08 95%)"
+      },
+      {
+        id: 7,
+        name: "パワーボルダー",
+        title: "怪力無双の岩石魔人",
+        stageName: "STAGE 7: 岩盤の迷宮",
+        image: "boss_power_boulder.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #362923 0%, #120b08 95%)"
+      },
+      {
+        id: 8,
+        name: "デスマシン",
+        title: "古代文明の鋼鉄殺戮兵器",
+        stageName: "STAGE 8: 封印の機械都市",
+        image: "boss_death_machine.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #2a2c33 0%, #0d0e12 95%)"
+      },
+      {
+        id: 9,
+        name: "イビルシャーマン",
+        title: "闇の魔法を操る邪悪な大魔導士",
+        stageName: "STAGE 9: 漆黒の儀式場",
+        image: "boss_evil_shaman.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #3b1848 0%, #120517 95%)"
+      }
+    ]
+  },
+  precure: {
+    id: "precure",
+    name: "プリキュアのせかい",
+    shortName: "プリキュア",
+    themeColor: "#ff66b2",
+    monsters: [
+      {
+        id: 1,
+        name: "キュアエール",
+        title: "みんなを応援！元気のプリキュア",
+        stageName: "STAGE 1: 明日へのエール",
+        image: "precure_yell.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #4a1935 0%, #14050d 95%)"
+      },
+      {
+        id: 2,
+        name: "キュアアンジュ",
+        title: "知恵と癒やしのプリキュア",
+        stageName: "STAGE 2: 青空のアンジュ",
+        image: "precure_ange.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #19354a 0%, #050d14 95%)"
+      },
+      {
+        id: 3,
+        name: "キュアエトワール",
+        title: "輝く星のプリキュア",
+        stageName: "STAGE 3: 希望のエトワール",
+        image: "precure_etoile.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #4a3c19 0%, #140f05 95%)"
+      },
+      {
+        id: 4,
+        name: "キュアマシェリ",
+        title: "愛を届けるキュートなプリキュア",
+        stageName: "STAGE 4: 心をつなぐマシェリ",
+        image: "precure_macherie.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #4a1928 0%, #140508 95%)"
+      },
+      {
+        id: 5,
+        name: "キュアアムール",
+        title: "愛の心を信じるプリキュア",
+        stageName: "STAGE 5: 優しきアムール",
+        image: "precure_amour.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #35194a 0%, #0d0514 95%)"
+      },
+      {
+        id: 6,
+        name: "キュアスカイ",
+        title: "無限にひろがる青空のプリキュア",
+        stageName: "STAGE 6: ひろがる青空",
+        image: "precure_sky.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #19384a 0%, #050f14 95%)"
+      },
+      {
+        id: 7,
+        name: "キュアプリズム",
+        title: "やさしく照らす光のプリキュア",
+        stageName: "STAGE 7: やさしいプリズム",
+        image: "precure_prism.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #47264a 0%, #130814 95%)"
+      },
+      {
+        id: 8,
+        name: "キュアウィング",
+        title: "空を翔ける勇気のプリキュア",
+        stageName: "STAGE 8: 勇気のつばさ",
+        image: "precure_wing.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #4a3019 0%, #140a05 95%)"
+      },
+      {
+        id: 9,
+        name: "キュアバタフライ",
+        title: "アゲアゲ↑華麗なプリキュア",
+        stageName: "STAGE 9: 華麗なるアゲハ",
+        image: "precure_butterfly.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #4a193c 0%, #14050f 95%)"
+      },
+      {
+        id: 10,
+        name: "キュアマジェスティ",
+        title: "高貴に降り立つ神秘のプリキュア",
+        stageName: "STAGE 10: 運命のマジェスティ",
+        image: "precure_majesty.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #3a194a 0%, #0f0514 95%)"
+      },
+      {
+        id: 11,
+        name: "キュアアイドル",
+        title: "笑顔ニッコリ！歌のプリキュア",
+        stageName: "STAGE 11: キラッキランランの歌",
+        image: "precure_idol.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #4a1935 0%, #14050d 95%)"
+      },
+      {
+        id: 12,
+        name: "キュアウインク",
+        title: "ウィンクで魅了！アイドルの絆",
+        stageName: "STAGE 12: クールなウインク",
+        image: "precure_wink.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #193c4a 0%, #051014 95%)"
+      },
+      {
+        id: 13,
+        name: "キュアキュンキュン",
+        title: "胸キュン全開！あふれるトキメキ",
+        stageName: "STAGE 13: トキメキハート",
+        image: "precure_kyunkyun.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #3a194a 0%, #0f0514 95%)"
+      },
+      {
+        id: 14,
+        name: "キュアズキューン",
+        title: "ズキューンと胸打つハッピーメロディ",
+        stageName: "STAGE 14: 響くズキューン",
+        image: "precure_zkyun.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #4a3819 0%, #140e05 95%)"
+      },
+      {
+        id: 15,
+        name: "キュアキッス",
+        title: "甘く輝く最高のラストステージ！",
+        stageName: "STAGE 15: 輝くアイドルステージ",
+        image: "precure_kiss.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #4a1928 0%, #140508 95%)"
       }
     ]
   },
@@ -1808,6 +2000,165 @@ class MathProblemGenerator {
         answer = a + b - c;
         formulaText = `${a} ＋ ${b} − ${c} ＝ ？`;
         return this.createChoices(formulaText, answer);
+      }
+      formulaText = `${num1} ${operator} ${num2} ＝ ？`;
+      return this.createChoices(formulaText, answer);
+    }
+
+    if (worldKey === 'precure') {
+      // プリキュアワールド（全15ステージ）
+      switch (stage) {
+        case 1: {
+          // キュアエール: 1桁足し算（入門・和<=7）
+          num1 = this.getRandomInt(1, 4);
+          num2 = this.getRandomInt(1, 7 - num1);
+          operator = '＋';
+          answer = num1 + num2;
+          break;
+        }
+        case 2: {
+          // キュアアンジュ: 1桁引き算（差>=1）
+          num1 = this.getRandomInt(3, 8);
+          num2 = this.getRandomInt(1, num1 - 1);
+          operator = '−';
+          answer = num1 - num2;
+          break;
+        }
+        case 3: {
+          // キュアエトワール: 10の合成・分解
+          const isAdd = Math.random() > 0.5;
+          if (isAdd) {
+            num1 = this.getRandomInt(1, 9);
+            num2 = 10 - num1;
+            operator = '＋';
+            answer = 10;
+          } else {
+            num1 = 10;
+            num2 = this.getRandomInt(1, 9);
+            operator = '−';
+            answer = num1 - num2;
+          }
+          break;
+        }
+        case 4: {
+          // キュアマシェリ: 繰り上がり足し算（入門：和11〜14）
+          num1 = this.getRandomInt(5, 9);
+          num2 = this.getRandomInt(11 - num1, 14 - num1);
+          operator = '＋';
+          answer = num1 + num2;
+          break;
+        }
+        case 5: {
+          // キュアアムール: 繰り上がり足し算（本格：和11〜18）
+          num1 = this.getRandomInt(5, 9);
+          num2 = this.getRandomInt(11 - num1, 9);
+          operator = '＋';
+          answer = num1 + num2;
+          break;
+        }
+        case 6: {
+          // キュアスカイ: 繰り下がり引き算（入門：引かれる数11〜14）
+          answer = this.getRandomInt(2, 7);
+          num2 = this.getRandomInt(4, 9);
+          num1 = answer + num2;
+          operator = '−';
+          break;
+        }
+        case 7: {
+          // キュアプリズム: 繰り下がり引き算（本格：引かれる数11〜18）
+          answer = this.getRandomInt(2, 9);
+          num2 = this.getRandomInt(4, 9);
+          num1 = answer + num2;
+          operator = '−';
+          break;
+        }
+        case 8: {
+          // キュアウィング: 10のまとまり計算（20+30, 70-30など）
+          const isAdd = Math.random() > 0.5;
+          const t1 = this.getRandomInt(1, 5) * 10;
+          const t2 = this.getRandomInt(1, 4) * 10;
+          if (isAdd) {
+            num1 = t1; num2 = t2; operator = '＋'; answer = num1 + num2;
+          } else {
+            num1 = Math.max(t1, t2); num2 = Math.min(t1, t2); operator = '−'; answer = num1 - num2;
+          }
+          break;
+        }
+        case 9: {
+          // キュアバタフライ: 2桁＋1桁・2桁−1桁
+          const isAdd = Math.random() > 0.5;
+          if (isAdd) {
+            num1 = this.getRandomInt(21, 55);
+            num2 = this.getRandomInt(2, 8);
+            operator = '＋';
+            answer = num1 + num2;
+          } else {
+            num1 = this.getRandomInt(25, 59);
+            num2 = this.getRandomInt(2, 8);
+            operator = '−';
+            answer = num1 - num2;
+          }
+          break;
+        }
+        case 10: {
+          // キュアマジェスティ: 2桁＋2桁（繰り上がりなし）
+          num1 = this.getRandomInt(12, 45);
+          num2 = this.getRandomInt(11, 40);
+          operator = '＋';
+          answer = num1 + num2;
+          break;
+        }
+        case 11: {
+          // キュアアイドル: かけ算九九入門（2の段・5の段）
+          num1 = Math.random() > 0.5 ? 2 : 5;
+          num2 = this.getRandomInt(1, 9);
+          operator = '×';
+          answer = num1 * num2;
+          break;
+        }
+        case 12: {
+          // キュアウインク: かけ算九九（3の段・4の段）
+          num1 = Math.random() > 0.5 ? 3 : 4;
+          num2 = this.getRandomInt(1, 9);
+          operator = '×';
+          answer = num1 * num2;
+          break;
+        }
+        case 13: {
+          // キュアキュンキュン: かけ算九九（6の段・7の段）
+          num1 = Math.random() > 0.5 ? 6 : 7;
+          num2 = this.getRandomInt(2, 9);
+          operator = '×';
+          answer = num1 * num2;
+          break;
+        }
+        case 14: {
+          // キュアズキューン: かけ算九九（8の段・9の段）
+          num1 = Math.random() > 0.5 ? 8 : 9;
+          num2 = this.getRandomInt(2, 9);
+          operator = '×';
+          answer = num1 * num2;
+          break;
+        }
+        case 15:
+        default: {
+          // キュアキッス: 九九全段ランダム ＆ 3つの数の計算総合
+          const isKuku = Math.random() > 0.4;
+          if (isKuku) {
+            num1 = this.getRandomInt(3, 9);
+            num2 = this.getRandomInt(3, 9);
+            operator = '×';
+            answer = num1 * num2;
+          } else {
+            const a = this.getRandomInt(10, 30);
+            const b = this.getRandomInt(5, 20);
+            const c = this.getRandomInt(3, 10);
+            answer = a + b - c;
+            formulaText = `${a} ＋ ${b} − ${c} ＝ ？`;
+            return this.createChoices(formulaText, answer);
+          }
+          break;
+        }
       }
       formulaText = `${num1} ${operator} ${num2} ＝ ？`;
       return this.createChoices(formulaText, answer);
@@ -2186,27 +2537,66 @@ class MathProblemGenerator {
           break;
         }
 
-        case 5:
-        default: {
-          const isKuku = Math.random() > 0.3;
+        case 5: {
+          // ダンガード: 九九（2〜5の段）＋ 2桁足し算
+          const isKuku = Math.random() > 0.4;
           if (isKuku) {
-            num1 = this.getRandomInt(2, 9);
-            num2 = this.getRandomInt(2, 9);
+            num1 = [2, 3, 4, 5][this.getRandomInt(0, 3)];
+            num2 = this.getRandomInt(1, 9);
             operator = '×';
             answer = num1 * num2;
           } else {
-            const isAdd = Math.random() > 0.5;
-            if (isAdd) {
-              num1 = this.getRandomInt(25, 60);
-              num2 = this.getRandomInt(15, 38);
-              operator = '＋';
-              answer = num1 + num2;
-            } else {
-              num1 = this.getRandomInt(45, 85);
-              num2 = this.getRandomInt(18, 36);
-              operator = '−';
-              answer = num1 - num2;
-            }
+            num1 = this.getRandomInt(20, 50);
+            num2 = this.getRandomInt(10, 35);
+            operator = '＋';
+            answer = num1 + num2;
+          }
+          break;
+        }
+
+        case 6: {
+          // オーガボックス: かけ算九九（4の段・6の段・7の段）
+          num1 = [4, 6, 7][this.getRandomInt(0, 2)];
+          num2 = this.getRandomInt(2, 9);
+          operator = '×';
+          answer = num1 * num2;
+          break;
+        }
+
+        case 7: {
+          // パワーボルダー: 2桁＋2桁（繰り上がりあり）
+          num1 = this.getRandomInt(25, 58);
+          num2 = this.getRandomInt(16, 38);
+          operator = '＋';
+          answer = num1 + num2;
+          break;
+        }
+
+        case 8: {
+          // デスマシン: 2桁−2桁（繰り下がりあり）
+          answer = this.getRandomInt(15, 45);
+          num2 = this.getRandomInt(18, 38);
+          num1 = answer + num2;
+          operator = '−';
+          break;
+        }
+
+        case 9:
+        default: {
+          // イビルシャーマン: 九九（7・8・9の段）＋ 3つの数の計算
+          const isKuku = Math.random() > 0.4;
+          if (isKuku) {
+            num1 = [7, 8, 9][this.getRandomInt(0, 2)];
+            num2 = this.getRandomInt(3, 9);
+            operator = '×';
+            answer = num1 * num2;
+          } else {
+            const a = this.getRandomInt(20, 45);
+            const b = this.getRandomInt(15, 30);
+            const c = this.getRandomInt(8, 18);
+            answer = a + b - c;
+            formulaText = `${a} ＋ ${b} − ${c} ＝ ？`;
+            return this.createChoices(formulaText, answer);
           }
           break;
         }
@@ -2340,15 +2730,21 @@ class GameApp {
     this.lastSkillIndex = -1;
 
     this.mascotImages = [
+      "precure_idol.png",
       "poke_pikachu.png",
+      "precure_yell.png",
       "poke_eevee.png",
+      "precure_sky.png",
       "ff5_goblin.png",
       "boss_hugger.png",
       "poke_mewtwo.png",
       "ff5_bahamut.png",
       "boss_dangaard.png",
+      "boss_evil_shaman.png",
       "poke_snorlax.png",
+      "precure_prism.png",
       "poke_psyduck.png",
+      "precure_wink.png",
       "poke_charmander.png",
       "ff5_red_dragon.png"
     ];
@@ -2461,6 +2857,10 @@ class GameApp {
       this.showWorldScreen();
     });
 
+    document.getElementById('card-world-precure').addEventListener('click', () => {
+      sound.playClick();
+      this.selectWorld('precure');
+    });
     document.getElementById('card-world-pokemon').addEventListener('click', () => {
       sound.playClick();
       this.selectWorld('pokemon');
@@ -2624,12 +3024,14 @@ class GameApp {
     sound.playClick();
     this.currentSlot = slotId;
     this.slotData = {
-      world: 'pokemon',
+      world: 'precure',
+      precureStage: 1,
       pokemonStage: 1,
       ff5Stage: 1,
       seikenStage: 1,
       score: 0,
       orbs: [],
+      clearedPrecure: false,
       clearedPokemon: false,
       clearedFF5: false,
       clearedSeiken: false,
@@ -2643,12 +3045,14 @@ class GameApp {
     sound.playClick();
     this.currentSlot = slotId;
     this.slotData = {
-      world: slotData.world || 'pokemon',
+      world: slotData.world || 'precure',
+      precureStage: slotData.precureStage || 1,
       pokemonStage: slotData.pokemonStage || 1,
       ff5Stage: slotData.ff5Stage || 1,
       seikenStage: slotData.seikenStage || 1,
       score: slotData.score || 0,
       orbs: slotData.orbs || [],
+      clearedPrecure: slotData.clearedPrecure || false,
       clearedPokemon: slotData.clearedPokemon || false,
       clearedFF5: slotData.clearedFF5 || false,
       clearedSeiken: slotData.clearedSeiken || false,
@@ -2714,15 +3118,26 @@ class GameApp {
       mewtwoBadge.style.background = "#475569";
     }
 
+    const precureBadge = document.getElementById('precure-progress-badge');
     const pokeBadge = document.getElementById('pokemon-progress-badge');
     const ff5Badge = document.getElementById('ff5-progress-badge');
     const seikenBadge = document.getElementById('seiken-progress-badge');
 
+    if (precureBadge) {
+      if (this.slotData.clearedPrecure) {
+        precureBadge.textContent = "🌟 クリア！ (15/15)";
+        precureBadge.className = "world-status-badge badge-clear";
+      } else {
+        precureBadge.textContent = `STAGE ${this.slotData.precureStage || 1} / 15`;
+        precureBadge.className = "world-status-badge badge-progress";
+      }
+    }
+
     if (this.slotData.clearedPokemon) {
-      pokeBadge.textContent = "🌟 クリア！ (13/13)";
+      pokeBadge.textContent = "🌟 クリア！ (12/12)";
       pokeBadge.className = "world-status-badge badge-clear";
     } else {
-      pokeBadge.textContent = `STAGE ${this.slotData.pokemonStage || 1} / 13`;
+      pokeBadge.textContent = `STAGE ${this.slotData.pokemonStage || 1} / 12`;
       pokeBadge.className = "world-status-badge badge-progress";
     }
 
@@ -2735,10 +3150,10 @@ class GameApp {
     }
 
     if (this.slotData.clearedSeiken) {
-      seikenBadge.textContent = "🌟 クリア！ (5/5)";
+      seikenBadge.textContent = "🌟 クリア！ (9/9)";
       seikenBadge.className = "world-status-badge badge-clear";
     } else {
-      seikenBadge.textContent = `STAGE ${this.slotData.seikenStage || 1} / 5`;
+      seikenBadge.textContent = `STAGE ${this.slotData.seikenStage || 1} / 9`;
       seikenBadge.className = "world-status-badge badge-progress";
     }
   }
@@ -2747,15 +3162,20 @@ class GameApp {
     this.currentWorld = worldKey;
     this.slotData.world = worldKey;
 
-    if (worldKey === 'pokemon') {
+    if (worldKey === 'precure') {
+      this.stage = this.slotData.precureStage || 1;
+      if (this.stage > 15) this.stage = 1;
+    } else if (worldKey === 'pokemon') {
       this.stage = this.slotData.pokemonStage || 1;
-      if (this.stage > 13) this.stage = 1;
+      if (this.stage > 12) this.stage = 1;
     } else if (worldKey === 'ff5') {
       this.stage = this.slotData.ff5Stage || 1;
       if (this.stage > 7) this.stage = 1;
-    } else {
+    } else if (worldKey === 'seiken') {
       this.stage = this.slotData.seikenStage || 1;
-      if (this.stage > 5) this.stage = 1;
+      if (this.stage > 9) this.stage = 1;
+    } else if (worldKey === 'mewtwo') {
+      this.stage = 1;
     }
 
     this.score = this.slotData.score || 0;
@@ -2765,11 +3185,13 @@ class GameApp {
   saveCurrentProgress() {
     if (!this.slotData) return;
 
-    if (this.currentWorld === 'pokemon') {
+    if (this.currentWorld === 'precure') {
+      this.slotData.precureStage = this.stage;
+    } else if (this.currentWorld === 'pokemon') {
       this.slotData.pokemonStage = this.stage;
     } else if (this.currentWorld === 'ff5') {
       this.slotData.ff5Stage = this.stage;
-    } else {
+    } else if (this.currentWorld === 'seiken') {
       this.slotData.seikenStage = this.stage;
     }
     this.slotData.score = this.score;
@@ -3040,12 +3462,22 @@ class GameApp {
         <strong>正真正銘の「究極のさんすうマスター」</strong>だ！<br>
         本当にすばらしい！ 感動の完全制覇おめでとう！！
       `;
+    } else if (this.currentWorld === 'precure') {
+      this.slotData.clearedPrecure = true;
+      this.slotData.precureStage = 15;
+      document.getElementById('ending-title').textContent = "🌸 プリキュア 完全制覇! 🌸";
+      document.getElementById('ending-message').innerHTML = `
+        キュアキッスとの最高のラストステージを達成！<br>
+        はぐっと・ひろプリ・キミとアイドル 全15人のプリキュアたちと力を合わせたきみは<br>
+        <strong>最高にキラキラ輝く「さんすうプリキュア」</strong>だ！<br>
+        夢と希望の完全制覇！ 本当におめでとう！！
+      `;
     } else if (this.currentWorld === 'pokemon') {
       this.slotData.clearedPokemon = true;
-      this.slotData.pokemonStage = 13;
+      this.slotData.pokemonStage = 12;
       document.getElementById('ending-title').textContent = "👑 ポケモン 完全制覇! 👑";
       document.getElementById('ending-message').innerHTML = `
-        ミュウツーを 撃破した！<br>
+        伝説の海神カイオーガを 撃破した！<br>
         すべてのポケモンリーグの試練を制覇したきみは<br>
         <strong>伝説の「ポケモンマスター」</strong>だ！<br>
         すばらしい！ おめでとう！！
@@ -3060,14 +3492,14 @@ class GameApp {
         <strong>伝説の「しょうかんマスター」</strong>だ！<br>
         すばらしい！ おめでとう！！
       `;
-    } else {
+    } else if (this.currentWorld === 'seiken') {
       this.slotData.clearedSeiken = true;
-      this.slotData.seikenStage = 5;
+      this.slotData.seikenStage = 9;
       document.getElementById('ending-title').textContent = "👑 聖剣伝説 完全制覇! 👑";
       document.getElementById('ending-message').innerHTML = `
-        神獣ダンガードを 撃破した！<br>
-        聖剣伝説のすべての試練を制覇したきみは<br>
-        <strong>伝説の「せいけんマスター」</strong>だ！<br>
+        大魔導士イビルシャーマンを 撃破した！<br>
+        聖剣伝説の全９体の試練を制覇したきみは<br>
+        <strong>マナの勇者「せいけんマスター」</strong>だ！<br>
         すばらしい！ おめでとう！！
       `;
     }
