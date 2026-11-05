@@ -753,6 +753,210 @@
       0% { transform: scale(0.85); opacity: 0; }
       100% { transform: scale(1); opacity: 1; }
     }
+  
+    /* オーブ祭壇（ワールド選択画面） */
+    .orb-altar {
+      background: linear-gradient(180deg, #151a30 0%, #0b0e1c 100%);
+      border: 2px solid #5b4a8c;
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin-top: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    .orb-altar-header {
+      font-size: 13px;
+      font-weight: 900;
+      color: #d8b4fe;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .orb-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 4px;
+    }
+    .orb-slot {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #090c17;
+      border: 2px dashed #475569;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .orb-slot.has-orb {
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 12px currentColor;
+    }
+    .orb-gem {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      box-shadow: inset -2px -2px 6px rgba(0,0,0,0.6), 0 0 8px currentColor;
+    }
+    .gem-red { background: radial-gradient(circle at 35% 35%, #ff8e8e, #e11d48); color: #f43f5e; }
+    .gem-blue { background: radial-gradient(circle at 35% 35%, #93c5fd, #2563eb); color: #3b82f6; }
+    .gem-yellow { background: radial-gradient(circle at 35% 35%, #fef08a, #eab308); color: #eab308; }
+    .gem-green { background: radial-gradient(circle at 35% 35%, #86efac, #16a34a); color: #22c55e; }
+    .gem-white { background: radial-gradient(circle at 35% 35%, #ffffff, #cbd5e1); color: #ffffff; }
+    .gem-black { background: radial-gradient(circle at 35% 35%, #64748b, #0f172a); color: #a855f7; border: 1.5px solid #a855f7; }
+
+    /* ミュウツー決戦カード */
+    .world-card.mewtwo-theme {
+      border-color: #a855f7;
+      background: linear-gradient(145deg, #2e1045 0%, #11051c 100%);
+    }
+    .world-card.mewtwo-theme.locked {
+      opacity: 0.6;
+      filter: grayscale(0.8);
+      border-style: dashed;
+      cursor: not-allowed;
+    }
+    .world-card.mewtwo-theme.unlocked {
+      border-color: #c084fc;
+      animation: mewtwo-pulse 1.8s infinite alternate;
+      cursor: pointer;
+    }
+    @keyframes mewtwo-pulse {
+      0% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
+      100% { box-shadow: 0 0 25px rgba(216, 180, 254, 0.9); border-color: #f3e8ff; }
+    }
+
+    /* プレイヤーHP表示（ミュウツー戦専用） */
+    .player-hp-box {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 13px;
+      font-weight: 900;
+      color: #ff6584;
+      background: rgba(10, 14, 24, 0.9);
+      border: 1.5px solid #ff3860;
+      border-radius: 20px;
+      padding: 3px 12px;
+      margin: 4px auto 0;
+      width: fit-content;
+      box-shadow: 0 2px 8px rgba(255,56,96,0.3);
+    }
+    .player-hearts {
+      font-size: 16px;
+      letter-spacing: 3px;
+    }
+
+    /* 各種わざビジュアルエフェクト */
+    .skill-flame-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at center, rgba(255, 68, 0, 0.7) 0%, rgba(255, 170, 0, 0.4) 50%, transparent 80%);
+      animation: anim-flame 0.45s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 18;
+    }
+    @keyframes anim-flame {
+      0% { opacity: 0; transform: scale(0.6); }
+      40% { opacity: 1; transform: scale(1.15); filter: brightness(1.8); }
+      100% { opacity: 0; transform: scale(1.35); }
+    }
+
+    .skill-thunder-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(255, 255, 120, 0.85);
+      animation: anim-thunder 0.38s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 18;
+    }
+    @keyframes anim-thunder {
+      0% { opacity: 0; }
+      20% { opacity: 1; filter: invert(0); }
+      40% { opacity: 0.1; }
+      60% { opacity: 1; filter: invert(1); }
+      100% { opacity: 0; }
+    }
+
+    .skill-blizzard-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(160, 240, 255, 0.85) 0%, rgba(255, 255, 255, 0.7) 40%, transparent 80%);
+      animation: anim-blizzard 0.42s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 18;
+    }
+    @keyframes anim-blizzard {
+      0% { opacity: 0; transform: rotate(0deg) scale(0.7); }
+      50% { opacity: 1; transform: rotate(45deg) scale(1.15); }
+      100% { opacity: 0; transform: rotate(90deg) scale(1.4); }
+    }
+
+    .skill-water-overlay {
+      position: absolute;
+      bottom: 0; left: 0; width: 100%; height: 75%;
+      background: linear-gradient(0deg, rgba(0, 140, 255, 0.85) 0%, rgba(0, 220, 255, 0.5) 70%, transparent 100%);
+      animation: anim-water 0.42s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 18;
+    }
+    @keyframes anim-water {
+      0% { transform: translateY(100%); opacity: 0; }
+      50% { transform: translateY(0%); opacity: 1; }
+      100% { transform: translateY(-30%); opacity: 0; }
+    }
+
+    .skill-psychic-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(192, 132, 252, 0.85) 0%, rgba(88, 28, 135, 0.6) 60%, transparent 90%);
+      animation: anim-psychic 0.45s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 18;
+    }
+    @keyframes anim-psychic {
+      0% { transform: scale(0.4) rotate(0deg); opacity: 0; }
+      50% { transform: scale(1.2) rotate(180deg); opacity: 1; filter: hue-rotate(90deg); }
+      100% { transform: scale(1.4) rotate(360deg); opacity: 0; }
+    }
+
+    .skill-slash-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: none;
+      pointer-events: none;
+      z-index: 18;
+      overflow: hidden;
+    }
+    .slash-line-1 {
+      position: absolute;
+      top: 35%; left: -20%; width: 140%; height: 8px;
+      background: #ffffff;
+      box-shadow: 0 0 15px #00e5ff;
+      transform: rotate(-35deg);
+      animation: anim-slash 0.22s ease-out forwards;
+    }
+    .slash-line-2 {
+      position: absolute;
+      top: 45%; left: -20%; width: 140%; height: 8px;
+      background: #ffffff;
+      box-shadow: 0 0 15px #ffdf00;
+      transform: rotate(35deg);
+      animation: anim-slash 0.22s 0.08s ease-out forwards;
+    }
+    @keyframes anim-slash {
+      0% { transform: scaleX(0) rotate(-35deg); opacity: 1; }
+      100% { transform: scaleX(1.3) rotate(-35deg); opacity: 0; }
+    }
+
   </style>
 </head>
 <body>
@@ -814,7 +1018,42 @@
     </div>
     <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 3px;">すきな せかい を えらんで ちょうせんしよう！</p>
 
+    <!-- 🔮 ミュウツーのオーブの祭壇 -->
+    <div class="orb-altar">
+      <div class="orb-altar-header">
+        <span>🔮 ミュウツーのオーブ</span>
+        <span id="orb-count-text" style="color: #ffcb05; font-size: 12px;">0 / 6</span>
+      </div>
+      <div class="orb-row">
+        <div class="orb-slot" id="slot-orb-red" title="あかのオーブ"><div class="orb-gem gem-red" style="display:none;"></div></div>
+        <div class="orb-slot" id="slot-orb-blue" title="あおのオーブ"><div class="orb-gem gem-blue" style="display:none;"></div></div>
+        <div class="orb-slot" id="slot-orb-yellow" title="きいろのオーブ"><div class="orb-gem gem-yellow" style="display:none;"></div></div>
+        <div class="orb-slot" id="slot-orb-green" title="みどりのオーブ"><div class="orb-gem gem-green" style="display:none;"></div></div>
+        <div class="orb-slot" id="slot-orb-white" title="しろのオーブ"><div class="orb-gem gem-white" style="display:none;"></div></div>
+        <div class="orb-slot" id="slot-orb-black" title="くろのオーブ"><div class="orb-gem gem-black" style="display:none;"></div></div>
+      </div>
+      <div id="orb-status-message" style="font-size: 11px; color: #a0aec0; text-align: center; margin-top: 6px;">
+        ステージ全クリアで 未所持のオーブが 1個もらえるぞ！
+      </div>
+    </div>
+
+
     <div class="world-list">
+      <!-- 決戦: ミュウツー（オーブ6個で解放） -->
+      <div class="world-card mewtwo-theme locked" id="card-world-mewtwo">
+        <div class="world-thumb-box" style="border-color: #a855f7;">
+          <img src="poke_mewtwo.png" alt="MEWTWO" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+        </div>
+        <div class="world-info">
+          <div class="world-title" style="color: #d8b4fe;">
+            <span>🟣</span> 伝説の降臨：ミュウツー決戦
+          </div>
+          <div class="world-sub" id="mewtwo-card-desc">
+            🔒 封印中（オーブを 6つ 集めると 封印がとける！）
+          </div>
+          <div id="mewtwo-status-badge" class="world-status-badge badge-progress" style="background: #475569;">🔒 封印中</div>
+        </div>
+      </div>
       <!-- ワールド1: ポケモン -->
       <div class="world-card poke-theme" id="card-world-pokemon">
         <div class="world-thumb-box">
@@ -873,7 +1112,12 @@
           <span id="boss-name" style="color: var(--text-gold);">ピカチュウ</span>
           <span class="boss-stage-badge" id="boss-badge">ポケ STAGE 1</span>
         </div>
-        <div class="hp-bar-container">
+        <!-- プレイヤーHP（ミュウツー戦のみ表示） -->
+      <div class="player-hp-box" id="player-hp-box">
+        <span>きみのHP:</span>
+        <span class="player-hearts" id="player-hearts-display">❤️❤️❤️</span>
+      </div>
+      <div class="hp-bar-container">
           <div class="hp-bar-fill" id="boss-hp-bar"></div>
           <div class="hp-bar-text" id="boss-hp-text">HP 10 / 10</div>
         </div>
@@ -884,6 +1128,16 @@
       </div>
 
       <div class="effect-overlay">
+        <!-- 多彩なランダム技エフェクト -->
+        <div class="skill-flame-overlay" id="effect-flame"></div>
+        <div class="skill-thunder-overlay" id="effect-thunder"></div>
+        <div class="skill-blizzard-overlay" id="effect-blizzard"></div>
+        <div class="skill-water-overlay" id="effect-water"></div>
+        <div class="skill-psychic-overlay" id="effect-psychic"></div>
+        <div class="skill-slash-overlay" id="effect-slash">
+          <div class="slash-line-1"></div>
+          <div class="slash-line-2"></div>
+        </div>
         <div class="magic-bullet" id="effect-magic"></div>
         <div class="beam-effect" id="effect-beam"></div>
         <div class="battle-msg-float" id="effect-text">かいしんの いちげき！</div>
@@ -933,6 +1187,34 @@
         すばらしい！ おめでとう！！
       </div>
       <button class="menu-btn primary" id="btn-ending-title">せかい選択へ もどる</button>
+    </div>
+  </div>
+
+  <!-- 8. オーブ獲得モーダル -->
+  <div class="modal-overlay" id="modal-orb-get">
+    <div class="result-box" style="border-color: #a855f7; box-shadow: 0 0 35px rgba(168, 85, 247, 0.6);">
+      <div class="result-title" style="color: #d8b4fe;">🔮 オーブを てにいれた！ 🔮</div>
+      <div id="awarded-orb-preview" style="width: 60px; height: 60px; border-radius: 50%; margin: 10px auto; display: flex; justify-content: center; align-items: center; box-shadow: 0 0 20px currentColor;"></div>
+      <div class="result-msg" id="awarded-orb-message" style="font-size: 15px;">
+        <strong>あかのオーブ</strong> を 手に入れた！<br>
+        のこり 5個 で 伝説のミュウツーが 降臨するぞ！
+      </div>
+      <button class="menu-btn primary" id="btn-close-orb-modal" style="background: linear-gradient(180deg, #9333ea, #581c87); border-color: #d8b4fe; color: #fff;">やったぞ！</button>
+    </div>
+  </div>
+
+  <!-- 9. ゲームオーバーモーダル（ミュウツー戦専用） -->
+  <div class="modal-overlay" id="modal-gameover">
+    <div class="result-box" style="border-color: #ef4444; box-shadow: 0 0 35px rgba(239, 68, 68, 0.6);">
+      <div class="result-title" style="color: #ef4444;">💀 GAME OVER 💀</div>
+      <div style="font-size: 40px; margin: 8px 0;">⚡💔⚡</div>
+      <div class="result-msg" style="font-size: 15px;">
+        目の前が まっくらになった…！<br>
+        ミュウツーの強大な力に 倒れてしまった。<br>
+        もっと計算力をみがいて 再挑戦しよう！
+      </div>
+      <button class="menu-btn primary" id="btn-retry-mewtwo" style="background: linear-gradient(180deg, #dc2626, #7f1d1d); border-color: #fca5a5; color: #fff;">もういちど 挑戦！</button>
+      <button class="menu-btn" id="btn-gameover-exit">せかい選択へ もどる</button>
     </div>
   </div>
 
@@ -1068,6 +1350,73 @@ class SoundEngine {
       noise.start(t);
       noise.stop(t + duration);
     } catch(e) {}
+  }
+
+  // 火炎放射音（ゴオオオオッ！激しい炎＆爆発）
+  playFlame() {
+    this.init();
+    this.playNoise('bandpass', 1200, 300, 0.42, 0.4, 0, 4);
+    this.playNoise('lowpass', 800, 60, 0.45, 0.35, 0.05);
+    this.playTone(130, 'sawtooth', 0.35, 0.25, 0.05, 45);
+  }
+
+  // 10まんボルト音（バリバリバリッ！強烈放電＆落雷）
+  playThunder() {
+    this.init();
+    for (let i = 0; i < 4; i++) {
+      this.playTone(1800 - i * 300, 'square', 0.05, 0.22, i * 0.04, 300);
+      this.playNoise('bandpass', 4000, 800, 0.06, 0.28, i * 0.04, 6);
+    }
+    this.playNoise('lowpass', 1600, 80, 0.35, 0.4, 0.16);
+    this.playTone(90, 'sawtooth', 0.3, 0.3, 0.16, 35);
+  }
+
+  // ふぶき音（キィィーーン…パキキキッ！絶対零度氷結）
+  playBlizzard() {
+    this.init();
+    this.playTone(1600, 'sine', 0.35, 0.18, 0, 3200);
+    this.playTone(2400, 'triangle', 0.3, 0.15, 0.05, 4200);
+    this.playNoise('highpass', 2000, 4000, 0.35, 0.25, 0.05);
+    // 氷の砕けるパキッ音
+    this.playTone(3400, 'sine', 0.08, 0.25, 0.25, 800);
+    this.playNoise('bandpass', 3000, 1000, 0.15, 0.3, 0.25);
+  }
+
+  // ハイドロポンプ音（ザババババーーーッ！怒濤の大水流）
+  playHydro() {
+    this.init();
+    this.playNoise('bandpass', 600, 2000, 0.45, 0.4, 0, 3);
+    this.playNoise('lowpass', 1200, 100, 0.5, 0.38, 0.05);
+    this.playTone(110, 'triangle', 0.4, 0.3, 0.05, 45);
+  }
+
+  // サイコキネシス音（グワングワングワン…空間歪曲＆念動撃）
+  playPsychic() {
+    this.init();
+    for (let i = 0; i < 3; i++) {
+      this.playTone(300 + i * 150, 'sine', 0.12, 0.2, i * 0.08, 600 + i * 200);
+    }
+    this.playTone(120, 'sawtooth', 0.35, 0.28, 0.22, 40);
+    this.playNoise('lowpass', 1400, 80, 0.3, 0.35, 0.22);
+  }
+
+  // つばめがえし音（シュバッ！ズバシィィン！二連閃光斬撃）
+  playSlash() {
+    this.init();
+    // 1段目
+    this.playTone(2600, 'triangle', 0.06, 0.2, 0, 1400);
+    this.playNoise('bandpass', 3500, 1000, 0.12, 0.3, 0, 3);
+    // 2段目（重いズバァン！）
+    this.playTone(3000, 'triangle', 0.08, 0.25, 0.09, 1100);
+    this.playNoise('lowpass', 1800, 90, 0.22, 0.4, 0.09);
+    this.playTone(160, 'sawtooth', 0.2, 0.3, 0.09, 40);
+  }
+
+  // プレイヤーダメージ音（ミュウツー戦のミス時：ドスッ！画面揺れ）
+  playPlayerDamage() {
+    this.init();
+    this.playNoise('lowpass', 900, 50, 0.3, 0.45, 0);
+    this.playTone(160, 'square', 0.25, 0.35, 0, 35);
   }
 
   // ボタンタップ音
@@ -1254,14 +1603,6 @@ const WORLDS_DATA = {
         stageName: "STAGE 12: かいてい神殿",
         image: "poke_kyogre.png",
         bgGrad: "radial-gradient(circle at 50% 55%, #0f1c3d 0%, #030612 95%)"
-      },
-      {
-        id: 13,
-        name: "ミュウツー",
-        title: "ハナダの洞窟の最強遺伝子",
-        stageName: "STAGE 13: ハナダの洞窟奥底",
-        image: "poke_mewtwo.png",
-        bgGrad: "radial-gradient(circle at 50% 55%, #26153b 0%, #080312 95%)"
       }
     ]
   },
@@ -1376,6 +1717,22 @@ const WORLDS_DATA = {
         bgGrad: "radial-gradient(circle at 50% 55%, #312147 0%, #0e0814 95%)"
       }
     ]
+  },
+  mewtwo: {
+    id: "mewtwo",
+    name: "伝説の降臨：ミュウツー決戦",
+    shortName: "決戦",
+    themeColor: "#c084fc",
+    monsters: [
+      {
+        id: 1,
+        name: "ミュウツー",
+        title: "ハナダの洞窟奥底・最強の遺伝子",
+        stageName: "EX: 伝説の決戦",
+        image: "poke_mewtwo.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #2e1045 0%, #080212 95%)"
+      }
+    ]
   }
 };
 
@@ -1387,8 +1744,74 @@ class MathProblemGenerator {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  static createChoices(formulaText, answer) {
+    const choices = new Set([answer]);
+    let loopCount = 0;
+    while (choices.size < 4 && loopCount < 50) {
+      loopCount++;
+      const offset = [-2, -1, 1, 2, 10, -10][Math.floor(Math.random() * 6)];
+      let dummy = answer + offset;
+      if (dummy < 0) dummy = Math.abs(dummy) + 1;
+      if (dummy !== answer) choices.add(dummy);
+    }
+    let fallback = 1;
+    while (choices.size < 4) {
+      choices.add(answer + fallback);
+      fallback++;
+    }
+    return {
+      formula: formulaText,
+      answer: answer,
+      choices: Array.from(choices).sort(() => Math.random() - 0.5)
+    };
+  }
+
   static generate(worldKey, stage) {
     let num1, num2, operator, answer;
+
+    if (worldKey === 'mewtwo') {
+      // ミュウツー決戦：小学2年生の最難関・精鋭問題（九九の壁・2桁繰り上がり足し算・2桁繰り下がり引き算・3つの数）
+      const type = this.getRandomInt(1, 4);
+      if (type === 1) {
+        // 九九の難関段（6, 7, 8, 9の段）
+        const hardPairs = [
+          [7, 8], [8, 7], [6, 9], [9, 6], [8, 9], [9, 8],
+          [7, 7], [8, 8], [6, 7], [7, 6], [6, 8], [8, 6],
+          [9, 7], [7, 9], [9, 9]
+        ];
+        const pair = hardPairs[this.getRandomInt(0, hardPairs.length - 1)];
+        num1 = pair[0];
+        num2 = pair[1];
+        operator = '×';
+        answer = num1 * num2;
+      } else if (type === 2) {
+        // 2桁＋2桁（繰り上がり、十の位も変わる難問）
+        const n1 = this.getRandomInt(28, 59);
+        const n2 = this.getRandomInt(18, 39);
+        num1 = n1;
+        num2 = n2;
+        operator = '＋';
+        answer = num1 + num2;
+      } else if (type === 3) {
+        // 2桁−2桁（繰り下がり、十の位が下がる難問）
+        const ans = this.getRandomInt(18, 48);
+        const sub = this.getRandomInt(19, 39);
+        num1 = ans + sub; // 37〜87
+        num2 = sub;
+        operator = '−';
+        answer = ans;
+      } else {
+        // 3つの数の計算（小2応用）
+        const a = this.getRandomInt(20, 45);
+        const b = this.getRandomInt(15, 30);
+        const c = this.getRandomInt(8, 18);
+        answer = a + b - c;
+        formulaText = `${a} ＋ ${b} − ${c} ＝ ？`;
+        return this.createChoices(formulaText, answer);
+      }
+      formulaText = `${num1} ${operator} ${num2} ＝ ？`;
+      return this.createChoices(formulaText, answer);
+    }
 
     if (worldKey === 'pokemon') {
       switch (stage) {
@@ -1887,10 +2310,32 @@ class GameApp {
     this.stage = 1;
     this.bossMaxHp = 10;
     this.bossHp = 10;
+    this.playerMaxHp = 3;
+    this.playerHp = 3;
     this.score = 0;
     this.combo = 0;
     this.currentProblem = null;
     this.isInputLocked = false;
+
+    // オーブ定義（赤・青・黄・緑・白・黒）
+    this.allOrbs = [
+      { id: 'red', name: 'あかのオーブ', color: '#f43f5e', title: 'ほのおの力' },
+      { id: 'blue', name: 'あおのオーブ', color: '#3b82f6', title: 'みずの力' },
+      { id: 'yellow', name: 'きいろのオーブ', color: '#eab308', title: 'でんきの力' },
+      { id: 'green', name: 'みどりのオーブ', color: '#22c55e', title: 'かぜの力' },
+      { id: 'white', name: 'しろのオーブ', color: '#ffffff', title: 'ひかりの力' },
+      { id: 'black', name: 'くろのオーブ', color: '#a855f7', title: 'やみの力' }
+    ];
+
+    // ランダム発動技一覧
+    this.battleSkills = [
+      { name: "🔥 かえんほうしゃ！", sound: "playFlame", overlay: "effect-flame" },
+      { name: "⚡ １０まんボルト！", sound: "playThunder", overlay: "effect-thunder" },
+      { name: "❄️ ふぶき！", sound: "playBlizzard", overlay: "effect-blizzard" },
+      { name: "🌊 ハイドロポンプ！", sound: "playHydro", overlay: "effect-water" },
+      { name: "🌀 サイコキネシス！", sound: "playPsychic", overlay: "effect-psychic" },
+      { name: "⚔️ つばめがえし！", sound: "playSlash", overlay: "effect-slash" }
+    ];
 
     this.mascotImages = [
       "poke_pikachu.png",
@@ -1983,6 +2428,37 @@ class GameApp {
     });
 
     // ワールド選択カードタップ
+    document.getElementById('card-world-mewtwo').addEventListener('click', () => {
+      const orbs = this.slotData.orbs || [];
+      if (orbs.length >= 6) {
+        sound.playClick();
+        this.selectWorld('mewtwo');
+      } else {
+        sound.playWrong();
+        alert(`ミュウツーは封印されている！\nオーブを 6つ 集めよう！（いま ${orbs.length} / 6 個）`);
+      }
+    });
+
+    // オーブ獲得モーダル閉じる
+    document.getElementById('btn-close-orb-modal').addEventListener('click', () => {
+      sound.playClick();
+      document.getElementById('modal-orb-get').classList.remove('active');
+      this.showWorldScreen();
+    });
+
+    // ゲームオーバーリトライ
+    document.getElementById('btn-retry-mewtwo').addEventListener('click', () => {
+      sound.playClick();
+      document.getElementById('modal-gameover').classList.remove('active');
+      this.startStage(1);
+    });
+
+    document.getElementById('btn-gameover-exit').addEventListener('click', () => {
+      sound.playClick();
+      document.getElementById('modal-gameover').classList.remove('active');
+      this.showWorldScreen();
+    });
+
     document.getElementById('card-world-pokemon').addEventListener('click', () => {
       sound.playClick();
       this.selectWorld('pokemon');
@@ -2151,9 +2627,11 @@ class GameApp {
       ff5Stage: 1,
       seikenStage: 1,
       score: 0,
+      orbs: [],
       clearedPokemon: false,
       clearedFF5: false,
-      clearedSeiken: false
+      clearedSeiken: false,
+      clearedMewtwo: false
     };
     SaveManager.saveSlotData(slotId, this.slotData);
     this.showWorldScreen();
@@ -2168,9 +2646,11 @@ class GameApp {
       ff5Stage: slotData.ff5Stage || 1,
       seikenStage: slotData.seikenStage || 1,
       score: slotData.score || 0,
+      orbs: slotData.orbs || [],
       clearedPokemon: slotData.clearedPokemon || false,
       clearedFF5: slotData.clearedFF5 || false,
-      clearedSeiken: slotData.clearedSeiken || false
+      clearedSeiken: slotData.clearedSeiken || false,
+      clearedMewtwo: slotData.clearedMewtwo || false
     };
     this.showWorldScreen();
   }
@@ -2178,6 +2658,59 @@ class GameApp {
   // 2. ワールド選択画面描画
   showWorldScreen() {
     this.showScreen('world');
+
+    // 1. オーブ祭壇の描画
+    const userOrbs = this.slotData.orbs || [];
+    document.getElementById('orb-count-text').textContent = `${userOrbs.length} / 6`;
+    this.allOrbs.forEach(orb => {
+      const slot = document.getElementById(`slot-orb-${orb.id}`);
+      if (slot) {
+        const gem = slot.querySelector('.orb-gem');
+        if (userOrbs.includes(orb.id)) {
+          slot.classList.add('has-orb');
+          slot.style.color = orb.color;
+          if (gem) gem.style.display = 'block';
+        } else {
+          slot.classList.remove('has-orb');
+          if (gem) gem.style.display = 'none';
+        }
+      }
+    });
+
+    const msgEl = document.getElementById('orb-status-message');
+    if (userOrbs.length >= 6) {
+      msgEl.innerHTML = "✨ <strong>６つのオーブが揃った！ ミュウツーの封印が解かれた！</strong> ✨";
+      msgEl.style.color = "#d8b4fe";
+    } else {
+      msgEl.innerHTML = `ステージ全クリアで 未所持のオーブが 1個もらえるぞ！（あと ${6 - userOrbs.length} 個）`;
+      msgEl.style.color = "#a0aec0";
+    }
+
+    // 2. ミュウツー決戦カードの解放チェック
+    const mewtwoCard = document.getElementById('card-world-mewtwo');
+    const mewtwoDesc = document.getElementById('mewtwo-card-desc');
+    const mewtwoBadge = document.getElementById('mewtwo-status-badge');
+
+    if (userOrbs.length >= 6) {
+      mewtwoCard.className = "world-card mewtwo-theme unlocked";
+      mewtwoDesc.textContent = "⚔️ 封印解除！ 最強のミュウツーに挑戦しよう！（プレイヤーHP制：3回ミスで終了）";
+      mewtwoDesc.style.color = "#f3e8ff";
+      if (this.slotData.clearedMewtwo) {
+        mewtwoBadge.textContent = "👑 撃破達成！";
+        mewtwoBadge.className = "world-status-badge badge-clear";
+      } else {
+        mewtwoBadge.textContent = "🔥 挑戦可能！";
+        mewtwoBadge.className = "world-status-badge badge-progress";
+        mewtwoBadge.style.background = "#9333ea";
+      }
+    } else {
+      mewtwoCard.className = "world-card mewtwo-theme locked";
+      mewtwoDesc.textContent = `🔒 封印中（オーブを 6つ 集めよう！ いま ${userOrbs.length} / 6 個）`;
+      mewtwoDesc.style.color = "#9cb1d4";
+      mewtwoBadge.textContent = "🔒 封印中";
+      mewtwoBadge.className = "world-status-badge badge-progress";
+      mewtwoBadge.style.background = "#475569";
+    }
 
     const pokeBadge = document.getElementById('pokemon-progress-badge');
     const ff5Badge = document.getElementById('ff5-progress-badge');
@@ -2248,6 +2781,16 @@ class GameApp {
     this.bossHp = 10;
     this.combo = 0;
 
+    // ミュウツー戦専用プレイヤーHP（ハート3つ）
+    const playerHpBox = document.getElementById('player-hp-box');
+    if (this.currentWorld === 'mewtwo') {
+      this.playerHp = 3;
+      playerHpBox.style.display = 'flex';
+      this.updatePlayerHpUI();
+    } else {
+      playerHpBox.style.display = 'none';
+    }
+
     const world = WORLDS_DATA[this.currentWorld];
     const monster = world.monsters[stageNum - 1];
 
@@ -2268,6 +2811,11 @@ class GameApp {
     const percent = Math.max(0, (this.bossHp / this.bossMaxHp) * 100);
     this.bossHpBar.style.width = `${percent}%`;
     this.bossHpText.textContent = `HP ${this.bossHp} / ${this.bossMaxHp}`;
+  }
+
+  updatePlayerHpUI() {
+    const hearts = "❤️ ".repeat(Math.max(0, this.playerHp)) + "🖤 ".repeat(Math.max(0, 3 - this.playerHp));
+    document.getElementById('player-hearts-display').textContent = hearts.trim();
   }
 
   nextProblem() {
@@ -2292,13 +2840,14 @@ class GameApp {
       this.combo++;
       this.score += (100 * this.stage) + (this.combo * 25);
 
+      // 3連続コンボ、または確率で「かいしんのはどうほう」
       const isCritical = (this.combo >= 3);
       if (isCritical) {
         sound.playBeam();
         this.triggerBeamEffect();
       } else {
-        sound.playCorrect();
-        this.triggerMagicEffect();
+        // 多彩なランダムわざ発動！
+        this.triggerRandomSkill();
       }
 
       setTimeout(() => {
@@ -2326,16 +2875,56 @@ class GameApp {
       }, isCritical ? 300 : 250);
 
     } else {
+      // 不正解時の処理
       sound.playWrong();
       btnElement.classList.add('wrong-highlight');
       this.combo = 0;
-      this.showFloatText("おしい！ もういちど！");
 
-      setTimeout(() => {
-        btnElement.classList.remove('wrong-highlight');
-        this.isInputLocked = false;
-      }, 700);
+      if (this.currentWorld === 'mewtwo') {
+        // ミュウツー戦専用：プレイヤーダメージ！
+        this.playerHp--;
+        this.updatePlayerHpUI();
+        sound.playPlayerDamage();
+
+        // 画面を赤く揺らす反撃演出
+        this.battleField.style.animation = "sfc-shake 0.4s ease";
+        setTimeout(() => { this.battleField.style.animation = ""; }, 400);
+
+        this.showFloatText("💥 ミュウツーの はんげき！ 💥");
+
+        if (this.playerHp <= 0) {
+          setTimeout(() => {
+            document.getElementById('modal-gameover').classList.add('active');
+          }, 700);
+          return;
+        }
+
+        setTimeout(() => {
+          btnElement.classList.remove('wrong-highlight');
+          this.isInputLocked = false;
+        }, 800);
+      } else {
+        // 通常ステージ：優しくリトライ
+        this.showFloatText("おしい！ もういちど！");
+        setTimeout(() => {
+          btnElement.classList.remove('wrong-highlight');
+          this.isInputLocked = false;
+        }, 700);
+      }
     }
+  }
+
+  // 多彩なランダムわざ発動演出
+  triggerRandomSkill() {
+    const skill = this.battleSkills[Math.floor(Math.random() * this.battleSkills.length)];
+    if (sound[skill.sound]) sound[skill.sound]();
+
+    const overlay = document.getElementById(skill.overlay);
+    if (overlay) {
+      overlay.style.display = 'block';
+      setTimeout(() => { overlay.style.display = 'none'; }, 450);
+    }
+    this.showFloatText(skill.name);
   }
 
   triggerMagicEffect() {
@@ -2368,21 +2957,76 @@ class GameApp {
 
     const world = WORLDS_DATA[this.currentWorld];
     const monster = world.monsters[this.stage - 1];
+    const isFinalStage = (this.stage >= world.monsters.length);
 
     setTimeout(() => {
+      if (this.currentWorld === 'mewtwo') {
+        // ミュウツー撃破達成！
+        this.showEnding();
+        return;
+      }
+
+      if (isFinalStage) {
+        // ワールド全ステージ制覇！未所持オーブを1個贈呈！
+        this.awardRandomOrb(monster);
+      } else {
+        document.getElementById('clear-boss-preview').src = monster.image;
+        document.getElementById('clear-message').innerHTML = `
+          <strong>${monster.name}</strong> を 撃破した！<br>
+          計算パワーが アップしたぞ！
+        `;
+        this.modalClear.classList.add('active');
+      }
+    }, 850);
+  }
+
+  // ステージ全制覇時の未所持オーブ獲得ロジック
+  awardRandomOrb(monster) {
+    const userOrbs = this.slotData.orbs || [];
+    const missingOrbs = this.allOrbs.filter(o => !userOrbs.includes(o.id));
+
+    if (missingOrbs.length > 0) {
+      // 未所持オーブからランダムで1個選ぶ
+      const awarded = missingOrbs[Math.floor(Math.random() * missingOrbs.length)];
+      userOrbs.push(awarded.id);
+      this.slotData.orbs = userOrbs;
+      SaveManager.saveSlotData(this.currentSlot, this.slotData);
+
+      const preview = document.getElementById('awarded-orb-preview');
+      preview.className = `orb-gem gem-${awarded.id}`;
+      preview.style.color = awarded.color;
+
+      const remaining = 6 - userOrbs.length;
+      document.getElementById('awarded-orb-message').innerHTML = `
+        <strong>${monster.name}</strong> を倒して ステージ完全制覇！<br>
+        【<strong>${awarded.name}</strong>】を 手に入れた！<br>
+        ${remaining === 0 ? "✨ <strong>すべてのオーブが揃った！ ミュウツーの封印が解かれた！</strong>" : `のこり <strong>${remaining}個</strong> で ミュウツーが降臨するぞ！`}
+      `;
+      document.getElementById('modal-orb-get').classList.add('active');
+    } else {
+      // すでに全オーブ所持済みの場合は通常クリア
       document.getElementById('clear-boss-preview').src = monster.image;
       document.getElementById('clear-message').innerHTML = `
         <strong>${monster.name}</strong> を 撃破した！<br>
-        計算パワーが アップしたぞ！
+        ステージ完全制覇！ ６つのオーブの力で ミュウツーに挑もう！
       `;
       this.modalClear.classList.add('active');
-    }, 850);
+    }
   }
 
   showEnding() {
     sound.playFanfare();
 
-    if (this.currentWorld === 'pokemon') {
+    if (this.currentWorld === 'mewtwo') {
+      this.slotData.clearedMewtwo = true;
+      document.getElementById('ending-title').textContent = "👑 伝説完全制覇：ミュウツー撃破! 👑";
+      document.getElementById('ending-message').innerHTML = `
+        最強の遺伝子 ミュウツーを ついに撃破した！<br>
+        小学校２年生のすべての難関計算を 極めたきみは<br>
+        <strong>正真正銘の「究極のさんすうマスター」</strong>だ！<br>
+        本当にすばらしい！ 感動の完全制覇おめでとう！！
+      `;
+    } else if (this.currentWorld === 'pokemon') {
       this.slotData.clearedPokemon = true;
       this.slotData.pokemonStage = 13;
       document.getElementById('ending-title').textContent = "👑 ポケモン 完全制覇! 👑";
