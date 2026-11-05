@@ -1103,7 +1103,7 @@
 
     <!-- タイトルマスコット画像 -->
     <div class="title-mascot-box">
-      <img src="poke_pikachu.png" alt="BOSS" class="pixel-art-img float-anim" id="title-mascot-img">
+      <img src="poke_pikachu.png?v=v10" alt="BOSS" class="pixel-art-img float-anim" id="title-mascot-img">
     </div>
 
     <div class="title-menu">
@@ -1161,7 +1161,7 @@
       <!-- 決戦: ミュウツー（オーブ6個で解放） -->
       <div class="world-card mewtwo-theme locked" id="card-world-mewtwo">
         <div class="world-thumb-box" style="border-color: #a855f7;">
-          <img src="poke_mewtwo.png" alt="MEWTWO" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+          <img src="poke_mewtwo.png?v=v10" alt="MEWTWO" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: #d8b4fe;">
@@ -1176,7 +1176,7 @@
       <!-- ワールド1: ポケモン -->
       <div class="world-card poke-theme" id="card-world-pokemon">
         <div class="world-thumb-box">
-          <img src="poke_pikachu.png" alt="POKEMON" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+          <img src="poke_pikachu.png?v=v10" alt="POKEMON" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: #ffcb05;">
@@ -1192,7 +1192,7 @@
       <!-- ワールド2: FF5 -->
       <div class="world-card ff5-theme" id="card-world-ff5">
         <div class="world-thumb-box">
-          <img src="ff5_bahamut.png" alt="FF5" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+          <img src="ff5_bahamut.png?v=v10" alt="FF5" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: #ff9d5c;">
@@ -1208,7 +1208,7 @@
       <!-- ワールド3: 聖剣伝説3 -->
       <div class="world-card seiken-theme" id="card-world-seiken">
         <div class="world-thumb-box">
-          <img src="boss_dangaard.png" alt="聖剣3" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+          <img src="boss_dangaard.png?v=v10" alt="聖剣3" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: var(--text-gold);">
@@ -1224,7 +1224,7 @@
       <!-- ワールド4: プリキュアのせかい -->
       <div class="world-card precure-theme" id="card-world-precure">
         <div class="world-thumb-box">
-          <img src="precure_idol.png" alt="プリキュア" style="max-width: 100%; max-height: 100%; object-fit: contain;">
+          <img src="precure_idol.png?v=v10" alt="プリキュア" style="max-width: 100%; max-height: 100%; object-fit: contain;">
         </div>
         <div class="world-info">
           <div class="world-title" style="color: #ff99cc;">
@@ -1260,7 +1260,7 @@
       </div>
 
       <div class="monster-stage">
-        <img src="poke_pikachu.png" alt="BOSS" class="boss-sprite-img float-anim" id="boss-sprite">
+        <img src="poke_pikachu.png?v=v10" alt="BOSS" class="boss-sprite-img float-anim" id="boss-sprite">
       </div>
 
       <div class="effect-overlay">
@@ -1309,7 +1309,7 @@
       <div class="result-title">🎉 BOSS DEFEATED!</div>
       <div class="result-stars" id="clear-stars">★★★</div>
       <div style="width: 110px; height: 90px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
-        <img id="clear-boss-preview" src="poke_pikachu.png" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+        <img id="clear-boss-preview" src="poke_pikachu.png?v=v10" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
       </div>
       <div class="result-msg" id="clear-message">
         強敵を 撃破した！<br>
@@ -1830,6 +1830,7 @@ const sound = new SoundEngine();
 // ==========================================
 // 2. モンスターデータ（ポケモン ＆ FF5 ＆ 聖剣3）
 // ==========================================
+const GAME_ASSET_VERSION = "v10";
 const WORLDS_DATA = {
   pokemon: {
     id: "pokemon",
@@ -3233,12 +3234,12 @@ class GameApp {
     const imgEl = document.getElementById('title-mascot-img');
     if (!imgEl) return;
     let idx = Math.floor(Math.random() * this.mascotImages.length);
-    imgEl.src = this.mascotImages[idx];
+    imgEl.src = this.mascotImages[idx] + "?v=" + GAME_ASSET_VERSION;
 
     // 4秒ごとにマスコットが切り替わる
     setInterval(() => {
       idx = (idx + 1) % this.mascotImages.length;
-      imgEl.src = this.mascotImages[idx];
+      imgEl.src = this.mascotImages[idx] + "?v=" + GAME_ASSET_VERSION;
     }, 4000);
   }
 
@@ -3510,7 +3511,7 @@ class GameApp {
     this.headerStage.textContent = `${world.shortName} STAGE ${stageNum}`;
     this.battleField.style.background = monster.bgGrad;
 
-    this.bossSprite.src = monster.image;
+    this.bossSprite.src = monster.image + "?v=" + GAME_ASSET_VERSION;
     this.bossSprite.className = "boss-sprite-img float-anim";
 
     this.updateHpBar();
@@ -3743,7 +3744,7 @@ class GameApp {
         // ワールド全ステージ制覇！未所持オーブを1個贈呈！
         this.awardRandomOrb(monster);
       } else {
-        document.getElementById('clear-boss-preview').src = monster.image;
+        document.getElementById('clear-boss-preview').src = monster.image + '?v=' + GAME_ASSET_VERSION;
         document.getElementById('clear-message').innerHTML = `
           <strong>${monster.name}</strong> を 撃破した！<br>
           計算パワーが アップしたぞ！
@@ -3778,7 +3779,7 @@ class GameApp {
       document.getElementById('modal-orb-get').classList.add('active');
     } else {
       // すでに全オーブ所持済みの場合は通常クリア
-      document.getElementById('clear-boss-preview').src = monster.image;
+      document.getElementById('clear-boss-preview').src = monster.image + '?v=' + GAME_ASSET_VERSION;
       document.getElementById('clear-message').innerHTML = `
         <strong>${monster.name}</strong> を 撃破した！<br>
         ステージ完全制覇！ ６つのオーブの力で ミュウツーに挑もう！
