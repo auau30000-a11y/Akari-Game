@@ -3,7 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>さんすうクエスト 〜 聖剣 ＆ ＦＦ５のしれん 〜</title>
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>さんすうクエスト 〜 ポケモン ＆ ＦＦ ＆ 聖剣 〜</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
@@ -16,7 +19,8 @@
       --accent-gold: #ffcc00;
       --accent-red: #ff3860;
       --accent-cyan: #00e5ff;
-      --accent-ff5: #ff7a18;
+      --accent-pokemon: #ffcb05;
+      --accent-ff5: #ff8e53;
       --text-gold: #ffe066;
       --text-white: #ffffff;
       --text-muted: #8c9eb5;
@@ -45,7 +49,7 @@
       justify-content: center;
       align-items: center;
       background-image: 
-        radial-gradient(circle at 50% 20%, rgba(226, 183, 20, 0.08) 0%, transparent 60%),
+        radial-gradient(circle at 50% 20%, rgba(255, 203, 5, 0.08) 0%, transparent 60%),
         radial-gradient(circle at 50% 80%, rgba(0, 229, 255, 0.06) 0%, transparent 60%);
     }
 
@@ -79,7 +83,7 @@
       display: flex;
     }
 
-    /* ヘッダー（SFC風メタルプレート） */
+    /* ヘッダー */
     .game-header {
       display: flex;
       justify-content: space-between;
@@ -117,25 +121,25 @@
       justify-content: center;
       align-items: center;
       text-align: center;
-      gap: 14px;
+      gap: 12px;
       background: radial-gradient(circle at center, #1b2747 0%, #080c16 95%);
     }
 
     .title-logo-badge {
       display: inline-block;
-      background: linear-gradient(135deg, #b38b1d, #ffdf00);
+      background: linear-gradient(135deg, #ffcb05, #ff7a18);
       color: #2b1700;
       font-size: 12px;
       font-weight: 900;
       padding: 4px 18px;
       border-radius: 20px;
-      box-shadow: 0 2px 8px rgba(255,223,0,0.3);
+      box-shadow: 0 2px 8px rgba(255,203,5,0.4);
       margin-bottom: 6px;
       letter-spacing: 1px;
     }
 
     .title-logo {
-      font-size: 27px;
+      font-size: 26px;
       font-weight: 900;
       letter-spacing: 2px;
       background: linear-gradient(180deg, #ffffff 0%, #ffe066 50%, #d49a15 100%);
@@ -146,16 +150,16 @@
     }
 
     .title-sub {
-      font-size: 12px;
+      font-size: 11.5px;
       color: #9cb1d4;
       margin-top: 4px;
-      letter-spacing: 1.5px;
+      letter-spacing: 1.2px;
     }
 
     .title-mascot-box {
-      width: 180px;
-      height: 150px;
-      margin: 6px auto;
+      width: 170px;
+      height: 140px;
+      margin: 4px auto;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -181,7 +185,7 @@
       max-width: 320px;
       display: flex;
       flex-direction: column;
-      gap: 11px;
+      gap: 10px;
     }
 
     .menu-btn {
@@ -259,11 +263,11 @@
     }
 
     .slot-info {
-      font-size: 13px;
+      font-size: 12.5px;
       color: #cbd5e1;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .slot-delete-btn {
@@ -281,7 +285,7 @@
 
     /* 3. ワールド選択画面 */
     #world-screen {
-      padding: 20px 16px;
+      padding: 16px 14px;
       background: radial-gradient(circle at 50% 30%, #172445 0%, #090e1c 95%);
       overflow-y: auto;
     }
@@ -289,17 +293,17 @@
     .world-list {
       display: flex;
       flex-direction: column;
-      gap: 16px;
-      margin-top: 16px;
+      gap: 13px;
+      margin-top: 14px;
     }
 
     .world-card {
       background: linear-gradient(145deg, #18223d 0%, #0c1221 100%);
       border: 2.5px solid #486196;
       border-radius: 14px;
-      padding: 14px;
+      padding: 12px 14px;
       cursor: pointer;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
       transition: all 0.15s ease;
       display: flex;
       gap: 12px;
@@ -312,6 +316,16 @@
       box-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
+    /* ポケモンテーマ（黄色＆青） */
+    .world-card.poke-theme {
+      border-color: #ffcb05;
+      background: linear-gradient(145deg, #2b2714 0%, #121422 100%);
+    }
+    .world-card.poke-theme:active {
+      border-color: #fff066;
+    }
+
+    /* FF5テーマ（炎オレンジ） */
     .world-card.ff5-theme {
       border-color: #ff8e53;
       background: linear-gradient(145deg, #2a1b24 0%, #120e1c 100%);
@@ -320,6 +334,7 @@
       border-color: #ffba7a;
     }
 
+    /* 聖剣テーマ（ゴールド） */
     .world-card.seiken-theme {
       border-color: #b38b1d;
       background: linear-gradient(145deg, #1b2642 0%, #0d1424 100%);
@@ -329,8 +344,8 @@
     }
 
     .world-thumb-box {
-      width: 72px;
-      height: 72px;
+      width: 66px;
+      height: 66px;
       flex-shrink: 0;
       background: rgba(0, 0, 0, 0.45);
       border-radius: 10px;
@@ -338,28 +353,28 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 4px;
+      padding: 3px;
     }
 
     .world-info {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .world-title {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 900;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
     }
 
     .world-sub {
       font-size: 11px;
       color: #9cb1d4;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     .world-status-badge {
@@ -405,7 +420,6 @@
       transition: background 0.4s ease;
     }
 
-    /* ボスステータス枠 */
     .boss-status-box {
       position: absolute;
       top: 10px;
@@ -470,7 +484,6 @@
       color: #ffffff;
     }
 
-    /* ボスドット絵スプライト表示部 */
     .monster-stage {
       position: relative;
       width: 250px;
@@ -501,7 +514,6 @@
       animation: sfc-defeat 0.9s forwards;
     }
 
-    /* エフェクトレイヤー */
     .effect-overlay {
       position: absolute;
       top: 0;
@@ -558,7 +570,6 @@
       letter-spacing: 1px;
     }
 
-    /* コマンド＆問題ウィンドウ */
     .battle-control-panel {
       background: #0d1222;
       border-top: 2.5px solid #b38b1d;
@@ -753,7 +764,7 @@
     <button class="btn-header" id="btn-save-exit">
       <span>💾</span> せかい を えらぶ
     </button>
-    <div id="header-stage-info" style="color: var(--text-gold);">FF5 STAGE 1</div>
+    <div id="header-stage-info" style="color: var(--text-gold);">STAGE 1</div>
     <button class="btn-header" id="btn-sound-toggle">
       <span id="sound-icon">🔊</span>
     </button>
@@ -763,13 +774,13 @@
   <section class="screen active" id="title-screen">
     <div>
       <span class="title-logo-badge">小学１・２年生 算数ドリル</span>
-      <h1 class="title-logo">さんすうクエスト<br>〜 聖剣 ＆ ＦＦ５ 〜</h1>
+      <h1 class="title-logo">さんすうクエスト<br>〜 ポケモン ＆ ＦＦ ＆ 聖剣 〜</h1>
       <p class="title-sub">16-BIT RETRO MATH BATTLE</p>
     </div>
 
-    <!-- タイトルマスコット画像（FF5/聖剣3のドット絵） -->
+    <!-- タイトルマスコット画像 -->
     <div class="title-mascot-box">
-      <img src="ff5_goblin.png" alt="BOSS" class="pixel-art-img float-anim" id="title-mascot-img">
+      <img src="poke_pikachu.png" alt="BOSS" class="pixel-art-img float-anim" id="title-mascot-img">
     </div>
 
     <div class="title-menu">
@@ -795,16 +806,32 @@
     </div>
   </section>
 
-  <!-- 3. ワールド選択画面（聖剣3 / FF5） -->
+  <!-- 3. ワールド選択画面（ポケモン / FF5 / 聖剣3） -->
   <section class="screen" id="world-screen">
     <div style="display: flex; justify-content: space-between; align-items: center;">
-      <h2 style="font-size: 19px; color: var(--text-gold);">ぼうけんの せかい を えらぶ</h2>
+      <h2 style="font-size: 18px; color: var(--text-gold);">ぼうけんの せかい を えらぶ</h2>
       <button class="btn-header" id="btn-back-to-slot">スロットへ</button>
     </div>
-    <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">すきな せかい を えらんで ちょうせんしよう！</p>
+    <p style="font-size: 11.5px; color: var(--text-muted); margin-top: 3px;">すきな せかい を えらんで ちょうせんしよう！</p>
 
     <div class="world-list">
-      <!-- ワールド1: FF5 -->
+      <!-- ワールド1: ポケモン -->
+      <div class="world-card poke-theme" id="card-world-pokemon">
+        <div class="world-thumb-box">
+          <img src="poke_pikachu.png" alt="POKEMON" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+        </div>
+        <div class="world-info">
+          <div class="world-title" style="color: #ffcb05;">
+            <span>⚡</span> ポケモンのせかい
+          </div>
+          <div class="world-sub">
+            ピカチュウ、イーブイ、ブイズ、カイオーガ、ミュウツーたちとバトル！ (全13ステージ)
+          </div>
+          <div id="pokemon-progress-badge" class="world-status-badge badge-progress">STAGE 1 / 13</div>
+        </div>
+      </div>
+
+      <!-- ワールド2: FF5 -->
       <div class="world-card ff5-theme" id="card-world-ff5">
         <div class="world-thumb-box">
           <img src="ff5_bahamut.png" alt="FF5" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
@@ -814,13 +841,13 @@
             <span>🔥</span> ファイナルファンタジー５
           </div>
           <div class="world-sub">
-            ゴブリン、キラービー、ズー、ブラックフレイム、メタモルファ、赤竜、竜王バハムート！ (全7ステージ)
+            ゴブリン、ズー、ブラックフレイム、赤竜、竜王バハムート！ (全7ステージ)
           </div>
           <div id="ff5-progress-badge" class="world-status-badge badge-progress">STAGE 1 / 7</div>
         </div>
       </div>
 
-      <!-- ワールド2: 聖剣伝説3 -->
+      <!-- ワールド3: 聖剣伝説3 -->
       <div class="world-card seiken-theme" id="card-world-seiken">
         <div class="world-thumb-box">
           <img src="boss_dangaard.png" alt="聖剣3" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
@@ -830,7 +857,7 @@
             <span>⚔️</span> 聖剣伝説のしれん
           </div>
           <div class="world-sub">
-            フルメタルハガー、マシンゴーレム、ジュエルイーター、ツェンカー、神獣ダンガード！ (全5ステージ)
+            フルメタルハガー、マシンゴーレム、ツェンカー、神獣ダンガード！ (全5ステージ)
           </div>
           <div id="seiken-progress-badge" class="world-status-badge badge-progress">STAGE 1 / 5</div>
         </div>
@@ -841,11 +868,10 @@
   <!-- 4. バトル画面 -->
   <section class="screen" id="battle-screen">
     <div class="battle-field" id="battle-field">
-      <!-- ボスステータス -->
       <div class="boss-status-box">
         <div class="boss-name-row">
-          <span id="boss-name" style="color: var(--text-gold);">ゴブリン</span>
-          <span class="boss-stage-badge" id="boss-badge">FF5 STAGE 1</span>
+          <span id="boss-name" style="color: var(--text-gold);">ピカチュウ</span>
+          <span class="boss-stage-badge" id="boss-badge">ポケ STAGE 1</span>
         </div>
         <div class="hp-bar-container">
           <div class="hp-bar-fill" id="boss-hp-bar"></div>
@@ -853,12 +879,10 @@
         </div>
       </div>
 
-      <!-- ボスドット絵スプライト -->
       <div class="monster-stage">
-        <img src="ff5_goblin.png" alt="BOSS" class="boss-sprite-img float-anim" id="boss-sprite">
+        <img src="poke_pikachu.png" alt="BOSS" class="boss-sprite-img float-anim" id="boss-sprite">
       </div>
 
-      <!-- エフェクト演出レイヤー -->
       <div class="effect-overlay">
         <div class="magic-bullet" id="effect-magic"></div>
         <div class="beam-effect" id="effect-beam"></div>
@@ -866,7 +890,6 @@
       </div>
     </div>
 
-    <!-- コマンド＆問題ウィンドウ -->
     <div class="battle-control-panel">
       <div class="question-window">
         <div class="question-prompt" id="question-prompt">【もんだい】</div>
@@ -888,7 +911,7 @@
       <div class="result-title">🎉 BOSS DEFEATED!</div>
       <div class="result-stars" id="clear-stars">★★★</div>
       <div style="width: 110px; height: 90px; margin: 0 auto; display: flex; justify-content: center; align-items: center;">
-        <img id="clear-boss-preview" src="ff5_goblin.png" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
+        <img id="clear-boss-preview" src="poke_pikachu.png" style="max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated;">
       </div>
       <div class="result-msg" id="clear-message">
         強敵を 撃破した！<br>
@@ -906,7 +929,7 @@
       <div style="font-size: 46px;">🏆✨</div>
       <div class="result-msg" id="ending-message" style="font-size: 15px;">
         すべての試練を 乗り越えたきみは<br>
-        <strong>伝説の「さんすうマスター」</strong>だ！<br>
+        <strong>伝説のマスター</strong>だ！<br>
         すばらしい！ おめでとう！！
       </div>
       <button class="menu-btn primary" id="btn-ending-title">せかい選択へ もどる</button>
@@ -918,12 +941,12 @@
     <div class="result-box" style="text-align: left;">
       <div class="result-title" style="text-align: center;">📖 あそびかた</div>
       <div style="font-size: 13.5px; line-height: 1.7; color: #e2e8f0;">
-        ① 「ファイナルファンタジー５」か「聖剣伝説」のせかいをえらぼう！<br>
+        ① 「ポケモン」「ＦＦ５」「聖剣伝説」のせかいをえらぼう！<br>
         ② 算数の問題が出題されるよ。<br>
         ③ ４つの数字から <strong>正解</strong> をタッチ！<br>
         ④ 正解すると <strong>魔法弾</strong> や <strong>はどうほう</strong> でボスに大ダメージ！<br>
         ⑤ <strong>10問正解</strong> でボスを撃破しステージクリア！<br>
-        ⑥ バハムートやダンガードたち 強敵を打ち破ろう！
+        ⑥ ミュウツーやバハムートたち 強敵を打ち破ろう！
       </div>
       <button class="menu-btn primary" id="btn-close-rules">わかった！</button>
     </div>
@@ -933,12 +956,12 @@
 
 <script>
 /**
- * 算数ドリルRPG『さんすうクエスト 〜 聖剣 ＆ ＦＦ５のしれん 〜』
- * SFC・聖剣伝説3 ＆ ファイナルファンタジー5 16-Bitドット絵版
+ * 算数ドリルRPG『さんすうクエスト 〜 ポケモン ＆ ＦＦ ＆ 聖剣 〜』
+ * 16-Bitドット絵・WebAudio対応
  */
 
 // ==========================================
-// 1. サウンドエンジン（Web Audio API）
+// 1. サウンドエンジン
 // ==========================================
 class SoundEngine {
   constructor() {
@@ -1026,9 +1049,121 @@ class SoundEngine {
 const sound = new SoundEngine();
 
 // ==========================================
-// 2. モンスターデータ（FF5 ＆ 聖剣3 ドット絵スプライト）
+// 2. モンスターデータ（ポケモン ＆ FF5 ＆ 聖剣3）
 // ==========================================
 const WORLDS_DATA = {
+  pokemon: {
+    id: "pokemon",
+    name: "ポケモンのせかい",
+    shortName: "ポケ",
+    themeColor: "#ffcb05",
+    monsters: [
+      {
+        id: 1,
+        name: "ポッポ",
+        title: "はじまりの草むら",
+        stageName: "STAGE 1: はじまりの草むら",
+        image: "poke_pidgey.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #18331e 0%, #060f08 95%)"
+      },
+      {
+        id: 2,
+        name: "コダック",
+        title: "あたまのいたい水辺",
+        stageName: "STAGE 2: せせらぎの水辺",
+        image: "poke_psyduck.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #162b3d 0%, #060e17 95%)"
+      },
+      {
+        id: 3,
+        name: "イーブイ",
+        title: "なかよし広場の人気者",
+        stageName: "STAGE 3: なかよし広場",
+        image: "poke_eevee.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #2d261e 0%, #0f0c08 95%)"
+      },
+      {
+        id: 4,
+        name: "ヒトカゲ",
+        title: "ひざしの山道のほのお",
+        stageName: "STAGE 4: ひざしの山道",
+        image: "poke_charmander.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #381e14 0%, #120804 95%)"
+      },
+      {
+        id: 5,
+        name: "ピカチュウ",
+        title: "トキワのもりの電気ネズミ",
+        stageName: "STAGE 5: トキワのもり",
+        image: "poke_pikachu.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #2a2e14 0%, #0c0f04 95%)"
+      },
+      {
+        id: 6,
+        name: "ライチュウ",
+        title: "むじんはつでんしょの雷光",
+        stageName: "STAGE 6: むじんはつでんしょ",
+        image: "poke_raichu.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #362912 0%, #120c04 95%)"
+      },
+      {
+        id: 7,
+        name: "シャワーズ",
+        title: "うずまき島の水の進化形",
+        stageName: "STAGE 7: うずまきの島",
+        image: "poke_vaporeon.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #14283b 0%, #050e17 95%)"
+      },
+      {
+        id: 8,
+        name: "サンダース",
+        title: "いなづま平原の雷狐",
+        stageName: "STAGE 8: いなづま平原",
+        image: "poke_jolteon.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #2e2b12 0%, #0f0d03 95%)"
+      },
+      {
+        id: 9,
+        name: "エーフィ",
+        title: "たいようの塔のエスパー",
+        stageName: "STAGE 9: たいようの塔",
+        image: "poke_espeon.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #2b1738 0%, #0f0514 95%)"
+      },
+      {
+        id: 10,
+        name: "イワーク",
+        title: "いわやまの洞窟の巨大岩蛇",
+        stageName: "STAGE 10: いわやまの洞窟",
+        image: "poke_onix.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #242426 0%, #0a0a0d 95%)"
+      },
+      {
+        id: 11,
+        name: "カビゴン",
+        title: "ねむりの関所の巨漢",
+        stageName: "STAGE 11: ねむりの関所",
+        image: "poke_snorlax.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #17282b 0%, #050d0e 95%)"
+      },
+      {
+        id: 12,
+        name: "カイオーガ",
+        title: "海の底の海底神殿の海神",
+        stageName: "STAGE 12: かいてい神殿",
+        image: "poke_kyogre.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #0f1c3d 0%, #030612 95%)"
+      },
+      {
+        id: 13,
+        name: "ミュウツー",
+        title: "ハナダの洞窟の最強遺伝子",
+        stageName: "STAGE 13: ハナダの洞窟奥底",
+        image: "poke_mewtwo.png",
+        bgGrad: "radial-gradient(circle at 50% 55%, #26153b 0%, #080312 95%)"
+      }
+    ]
+  },
   ff5: {
     id: "ff5",
     name: "ファイナルファンタジー５のしれん",
@@ -1154,10 +1289,189 @@ class MathProblemGenerator {
   static generate(worldKey, stage) {
     let num1, num2, operator, answer;
 
-    if (worldKey === 'ff5') {
+    if (worldKey === 'pokemon') {
       switch (stage) {
         case 1: {
-          // ゴブリン: 1桁の足し引き（繰り上がり・下がりなし、和<=10）
+          // ポッポ: 1桁足し引き（和<=8、超入門）
+          const isAdd = Math.random() > 0.5;
+          if (isAdd) {
+            num1 = this.getRandomInt(1, 5);
+            num2 = this.getRandomInt(1, 7 - num1);
+            operator = '＋';
+            answer = num1 + num2;
+          } else {
+            num1 = this.getRandomInt(2, 7);
+            num2 = this.getRandomInt(1, num1 - 1);
+            operator = '−';
+            answer = num1 - num2;
+          }
+          break;
+        }
+
+        case 2: {
+          // コダック: 1桁足し引き（和<=10、繰り上がりなし）
+          const isAdd = Math.random() > 0.45;
+          if (isAdd) {
+            num1 = this.getRandomInt(1, 8);
+            num2 = this.getRandomInt(1, 10 - num1);
+            operator = '＋';
+            answer = num1 + num2;
+          } else {
+            num1 = this.getRandomInt(3, 10);
+            num2 = this.getRandomInt(1, num1 - 1);
+            operator = '−';
+            answer = num1 - num2;
+          }
+          break;
+        }
+
+        case 3: {
+          // イーブイ: 10の合成・分解（あといくつで10？）
+          const isAdd = Math.random() > 0.5;
+          if (isAdd) {
+            num1 = this.getRandomInt(1, 9);
+            num2 = 10 - num1;
+            operator = '＋';
+            answer = 10;
+          } else {
+            num1 = 10;
+            num2 = this.getRandomInt(1, 9);
+            operator = '−';
+            answer = num1 - num2;
+          }
+          break;
+        }
+
+        case 4: {
+          // ヒトカゲ: 10のまとまりの足し引き (20+30, 70-30など)
+          const isAdd = Math.random() > 0.5;
+          const t1 = this.getRandomInt(1, 5) * 10;
+          const t2 = this.getRandomInt(1, 4) * 10;
+          if (isAdd) {
+            num1 = t1; num2 = t2; operator = '＋'; answer = num1 + num2;
+          } else {
+            num1 = Math.max(t1, t2); num2 = Math.min(t1, t2); operator = '−'; answer = num1 - num2;
+          }
+          break;
+        }
+
+        case 5: {
+          // ピカチュウ: 繰り上がり足し算 入門（足す数小さめ）
+          num1 = this.getRandomInt(7, 9);
+          num2 = this.getRandomInt(11 - num1, 5);
+          operator = '＋';
+          answer = num1 + num2;
+          break;
+        }
+
+        case 6: {
+          // ライチュウ: 繰り上がり足し算 本格（和11〜18の全パターン）
+          num1 = this.getRandomInt(4, 9);
+          num2 = this.getRandomInt(11 - num1, 9);
+          operator = '＋';
+          answer = num1 + num2;
+          break;
+        }
+
+        case 7: {
+          // シャワーズ: 繰り下がり引き算 入門（引く数小さめ）
+          answer = this.getRandomInt(6, 9);
+          num2 = this.getRandomInt(3, 5);
+          num1 = answer + num2; // 11〜14
+          operator = '−';
+          break;
+        }
+
+        case 8: {
+          // サンダース: 繰り下がり引き算 本格（11〜18からの引き算）
+          answer = this.getRandomInt(2, 9);
+          num2 = this.getRandomInt(5, 9);
+          num1 = answer + num2; // 11〜18
+          operator = '−';
+          break;
+        }
+
+        case 9: {
+          // エーフィ: 2桁 ± 1桁の計算 (位の感覚)
+          const isAdd = Math.random() > 0.5;
+          if (isAdd) {
+            num1 = this.getRandomInt(12, 45);
+            num2 = this.getRandomInt(2, 6);
+            operator = '＋';
+            answer = num1 + num2;
+          } else {
+            num1 = this.getRandomInt(15, 49);
+            num2 = this.getRandomInt(2, 5);
+            operator = '−';
+            answer = num1 - num2;
+          }
+          break;
+        }
+
+        case 10: {
+          // イワーク: 九九の基本段（2の段・5の段）
+          num1 = [2, 5][this.getRandomInt(0, 1)];
+          num2 = this.getRandomInt(1, 9);
+          operator = '×';
+          answer = num1 * num2;
+          break;
+        }
+
+        case 11: {
+          // カビゴン: 九九（3の段・4の段）＋ 2桁足し算
+          const isKuku = Math.random() > 0.4;
+          if (isKuku) {
+            num1 = [3, 4][this.getRandomInt(0, 1)];
+            num2 = this.getRandomInt(1, 9);
+            operator = '×';
+            answer = num1 * num2;
+          } else {
+            num1 = this.getRandomInt(12, 35);
+            num2 = this.getRandomInt(11, 28);
+            operator = '＋';
+            answer = num1 + num2;
+          }
+          break;
+        }
+
+        case 12: {
+          // カイオーガ: 九九後半段（6, 7, 8の段）
+          num1 = [6, 7, 8][this.getRandomInt(0, 2)];
+          num2 = this.getRandomInt(2, 9);
+          operator = '×';
+          answer = num1 * num2;
+          break;
+        }
+
+        case 13:
+        default: {
+          // ミュウツー: 九九全段（1〜9の段） ＆ 2桁の総合計算
+          const isKuku = Math.random() > 0.35;
+          if (isKuku) {
+            num1 = this.getRandomInt(2, 9);
+            num2 = this.getRandomInt(2, 9);
+            operator = '×';
+            answer = num1 * num2;
+          } else {
+            const isAdd = Math.random() > 0.5;
+            if (isAdd) {
+              num1 = this.getRandomInt(25, 60);
+              num2 = this.getRandomInt(15, 38);
+              operator = '＋';
+              answer = num1 + num2;
+            } else {
+              num1 = this.getRandomInt(45, 85);
+              num2 = this.getRandomInt(18, 36);
+              operator = '−';
+              answer = num1 - num2;
+            }
+          }
+          break;
+        }
+      }
+    } else if (worldKey === 'ff5') {
+      switch (stage) {
+        case 1: {
           const isAdd = Math.random() > 0.45;
           if (isAdd) {
             num1 = this.getRandomInt(1, 7);
@@ -1174,22 +1488,18 @@ class MathProblemGenerator {
         }
 
         case 2: {
-          // キラービー: 10の合成・分解と10のまとまり
           const pattern = this.getRandomInt(1, 3);
           if (pattern === 1) {
-            // 足して10
             num1 = this.getRandomInt(1, 9);
             num2 = 10 - num1;
             operator = '＋';
             answer = 10;
           } else if (pattern === 2) {
-            // 10からの引き算
             num1 = 10;
             num2 = this.getRandomInt(1, 9);
             operator = '−';
             answer = num1 - num2;
           } else {
-            // 10のまとまり（20+30, 70-30など）
             const isAdd = Math.random() > 0.5;
             const t1 = this.getRandomInt(1, 5) * 10;
             const t2 = this.getRandomInt(1, 4) * 10;
@@ -1203,7 +1513,6 @@ class MathProblemGenerator {
         }
 
         case 3: {
-          // ズー: 繰り上がり足し算（和が11〜18）
           num1 = this.getRandomInt(4, 9);
           num2 = this.getRandomInt(11 - num1, 9);
           operator = '＋';
@@ -1212,16 +1521,14 @@ class MathProblemGenerator {
         }
 
         case 4: {
-          // ブラックフレイム: 繰り下がり引き算（引かれる数11〜18）
           answer = this.getRandomInt(2, 9);
           num2 = this.getRandomInt(4, 9);
-          num1 = answer + num2; // 11〜18
+          num1 = answer + num2;
           operator = '−';
           break;
         }
 
         case 5: {
-          // メタモルファ: 2桁±1桁計算 ＆ 九九の基本段（2, 3, 5の段）
           const isKuku = Math.random() > 0.4;
           if (isKuku) {
             num1 = [2, 3, 5][this.getRandomInt(0, 2)];
@@ -1246,7 +1553,6 @@ class MathProblemGenerator {
         }
 
         case 6: {
-          // レッドドラゴン: かけ算九九全般（特に4, 6, 7, 8, 9の段中心）
           const hardDans = [4, 6, 7, 8, 9];
           num1 = hardDans[this.getRandomInt(0, hardDans.length - 1)];
           num2 = this.getRandomInt(2, 9);
@@ -1257,7 +1563,6 @@ class MathProblemGenerator {
 
         case 7:
         default: {
-          // 竜王バハムート: 九九全段 ＆ 総合2桁計算（ボス決戦）
           const isKuku = Math.random() > 0.35;
           if (isKuku) {
             num1 = this.getRandomInt(2, 9);
@@ -1411,9 +1716,9 @@ class MathProblemGenerator {
 }
 
 // ==========================================
-// 4. セーブデータ管理（3スロット ＆ ワールド別進行度）
+// 4. セーブデータ管理（3スロット ＆ 3ワールド対応）
 // ==========================================
-const SAVE_KEY = "SANSU_QUEST_DATA_V3";
+const SAVE_KEY = "SANSU_QUEST_DATA_V4";
 
 class SaveManager {
   static getSaves() {
@@ -1421,20 +1726,22 @@ class SaveManager {
       const data = localStorage.getItem(SAVE_KEY);
       if (data) return JSON.parse(data);
 
-      // 旧バージョン（V2）データの自動移行
-      const oldV2 = localStorage.getItem("SANSU_QUEST_SFC_V2");
-      if (oldV2) {
-        const oldData = JSON.parse(oldV2);
+      // 旧バージョン（V3）データの自動移行
+      const oldV3 = localStorage.getItem("SANSU_QUEST_DATA_V3");
+      if (oldV3) {
+        const oldData = JSON.parse(oldV3);
         const migrated = { 1: null, 2: null, 3: null };
         for (let i = 1; i <= 3; i++) {
           if (oldData[i]) {
             migrated[i] = {
-              world: 'seiken',
-              ff5Stage: 1,
-              seikenStage: oldData[i].stage || 1,
+              world: oldData[i].world || 'pokemon',
+              pokemonStage: 1,
+              ff5Stage: oldData[i].ff5Stage || 1,
+              seikenStage: oldData[i].seikenStage || 1,
               score: oldData[i].score || 0,
-              clearedFF5: false,
-              clearedSeiken: oldData[i].cleared || false,
+              clearedPokemon: false,
+              clearedFF5: oldData[i].clearedFF5 || false,
+              clearedSeiken: oldData[i].clearedSeiken || false,
               updatedAt: oldData[i].updatedAt || ""
             };
           }
@@ -1473,7 +1780,7 @@ class SaveManager {
 class GameApp {
   constructor() {
     this.currentSlot = 1;
-    this.currentWorld = 'ff5'; // 'ff5' または 'seiken'
+    this.currentWorld = 'pokemon';
     this.slotData = null;
 
     this.stage = 1;
@@ -1485,13 +1792,17 @@ class GameApp {
     this.isInputLocked = false;
 
     this.mascotImages = [
+      "poke_pikachu.png",
+      "poke_eevee.png",
       "ff5_goblin.png",
       "boss_hugger.png",
+      "poke_mewtwo.png",
       "ff5_bahamut.png",
       "boss_dangaard.png",
-      "ff5_red_dragon.png",
-      "boss_machine_golem.png",
-      "ff5_killer_bee.png"
+      "poke_snorlax.png",
+      "poke_psyduck.png",
+      "poke_charmander.png",
+      "ff5_red_dragon.png"
     ];
 
     this.initDOMElements();
@@ -1563,6 +1874,11 @@ class GameApp {
     });
 
     // ワールド選択カードタップ
+    document.getElementById('card-world-pokemon').addEventListener('click', () => {
+      sound.playClick();
+      this.selectWorld('pokemon');
+    });
+
     document.getElementById('card-world-ff5').addEventListener('click', () => {
       sound.playClick();
       this.selectWorld('ff5');
@@ -1666,18 +1982,20 @@ class GameApp {
       card.className = `slot-card ${slotData ? 'has-data' : ''}`;
 
       if (slotData) {
+        const pokeStg = slotData.pokemonStage || 1;
         const ff5Stg = slotData.ff5Stage || 1;
         const seikenStg = slotData.seikenStage || 1;
-        const totalCleared = (slotData.clearedFF5 ? 1 : 0) + (slotData.clearedSeiken ? 1 : 0);
+        const totalCleared = (slotData.clearedPokemon ? 1 : 0) + (slotData.clearedFF5 ? 1 : 0) + (slotData.clearedSeiken ? 1 : 0);
 
         card.innerHTML = `
           <div class="slot-header">
             <span>ぼうけんのしょ ${slotId}</span>
             <span style="font-size: 13px; color: #ffcc00;">
-              ${totalCleared === 2 ? '👑 ぜんくりあ！' : 'つづきから'}
+              ${totalCleared === 3 ? '👑 ぜんくりあ！' : 'つづきから'}
             </span>
           </div>
           <div class="slot-info">
+            <div>⚡ <strong>ポケ:</strong> ${slotData.clearedPokemon ? '🌟 制覇!' : `STAGE ${pokeStg} / 13`}</div>
             <div>🔥 <strong>FF5:</strong> ${slotData.clearedFF5 ? '🌟 制覇!' : `STAGE ${ff5Stg} / 7`}</div>
             <div>⚔️ <strong>聖剣:</strong> ${slotData.clearedSeiken ? '🌟 制覇!' : `STAGE ${seikenStg} / 5`}</div>
             <div style="font-size: 11px; color: #8c9eb5; margin-top: 2px;">スコア: ${slotData.score || 0} pts (${slotData.updatedAt})</div>
@@ -1719,10 +2037,12 @@ class GameApp {
     sound.playClick();
     this.currentSlot = slotId;
     this.slotData = {
-      world: 'ff5',
+      world: 'pokemon',
+      pokemonStage: 1,
       ff5Stage: 1,
       seikenStage: 1,
       score: 0,
+      clearedPokemon: false,
       clearedFF5: false,
       clearedSeiken: false
     };
@@ -1734,10 +2054,12 @@ class GameApp {
     sound.playClick();
     this.currentSlot = slotId;
     this.slotData = {
-      world: slotData.world || 'ff5',
+      world: slotData.world || 'pokemon',
+      pokemonStage: slotData.pokemonStage || 1,
       ff5Stage: slotData.ff5Stage || 1,
       seikenStage: slotData.seikenStage || 1,
       score: slotData.score || 0,
+      clearedPokemon: slotData.clearedPokemon || false,
       clearedFF5: slotData.clearedFF5 || false,
       clearedSeiken: slotData.clearedSeiken || false
     };
@@ -1748,9 +2070,17 @@ class GameApp {
   showWorldScreen() {
     this.showScreen('world');
 
-    // 進捗バッジ更新
+    const pokeBadge = document.getElementById('pokemon-progress-badge');
     const ff5Badge = document.getElementById('ff5-progress-badge');
     const seikenBadge = document.getElementById('seiken-progress-badge');
+
+    if (this.slotData.clearedPokemon) {
+      pokeBadge.textContent = "🌟 クリア！ (13/13)";
+      pokeBadge.className = "world-status-badge badge-clear";
+    } else {
+      pokeBadge.textContent = `STAGE ${this.slotData.pokemonStage || 1} / 13`;
+      pokeBadge.className = "world-status-badge badge-progress";
+    }
 
     if (this.slotData.clearedFF5) {
       ff5Badge.textContent = "🌟 クリア！ (7/7)";
@@ -1773,12 +2103,15 @@ class GameApp {
     this.currentWorld = worldKey;
     this.slotData.world = worldKey;
 
-    if (worldKey === 'ff5') {
+    if (worldKey === 'pokemon') {
+      this.stage = this.slotData.pokemonStage || 1;
+      if (this.stage > 13) this.stage = 1;
+    } else if (worldKey === 'ff5') {
       this.stage = this.slotData.ff5Stage || 1;
-      if (this.stage > 7) this.stage = 1; // 周回
+      if (this.stage > 7) this.stage = 1;
     } else {
       this.stage = this.slotData.seikenStage || 1;
-      if (this.stage > 5) this.stage = 1; // 周回
+      if (this.stage > 5) this.stage = 1;
     }
 
     this.score = this.slotData.score || 0;
@@ -1788,7 +2121,9 @@ class GameApp {
   saveCurrentProgress() {
     if (!this.slotData) return;
 
-    if (this.currentWorld === 'ff5') {
+    if (this.currentWorld === 'pokemon') {
+      this.slotData.pokemonStage = this.stage;
+    } else if (this.currentWorld === 'ff5') {
       this.slotData.ff5Stage = this.stage;
     } else {
       this.slotData.seikenStage = this.stage;
@@ -1938,7 +2273,17 @@ class GameApp {
   showEnding() {
     sound.playFanfare();
 
-    if (this.currentWorld === 'ff5') {
+    if (this.currentWorld === 'pokemon') {
+      this.slotData.clearedPokemon = true;
+      this.slotData.pokemonStage = 13;
+      document.getElementById('ending-title').textContent = "👑 ポケモン 完全制覇! 👑";
+      document.getElementById('ending-message').innerHTML = `
+        ミュウツーを 撃破した！<br>
+        すべてのポケモンリーグの試練を制覇したきみは<br>
+        <strong>伝説の「ポケモンマスター」</strong>だ！<br>
+        すばらしい！ おめでとう！！
+      `;
+    } else if (this.currentWorld === 'ff5') {
       this.slotData.clearedFF5 = true;
       this.slotData.ff5Stage = 7;
       document.getElementById('ending-title').textContent = "👑 FF5 完全制覇! 👑";
