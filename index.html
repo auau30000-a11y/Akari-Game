@@ -773,7 +773,7 @@
   <!-- 1. タイトル画面 -->
   <section class="screen active" id="title-screen">
     <div>
-      <span class="title-logo-badge">小学１・２年生 算数ドリル</span>
+      <span class="title-logo-badge">小学１・２年生 算数ドリル【大迫力サウンド版】</span>
       <h1 class="title-logo">さんすうクエスト<br>〜 ポケモン ＆ ＦＦ ＆ 聖剣 〜</h1>
       <p class="title-sub">16-BIT RETRO MATH BATTLE</p>
     </div>
@@ -948,6 +948,10 @@
         ⑤ <strong>10問正解</strong> でボスを撃破しステージクリア！<br>
         ⑥ ミュウツーやバハムートたち 強敵を打ち破ろう！
       </div>
+      <div style="display: flex; gap: 8px; margin: 10px 0;">
+        <button class="menu-btn" id="btn-test-attack" style="flex: 1; padding: 10px; font-size: 13px; background: #2d3b66;">⚔️ こうげき音</button>
+        <button class="menu-btn" id="btn-test-beam" style="flex: 1; padding: 10px; font-size: 13px; background: #6b2d12; color: #ffdf00;">🔥 はどうほう</button>
+      </div>
       <button class="menu-btn primary" id="btn-close-rules">わかった！</button>
     </div>
   </div>
@@ -968,18 +972,28 @@ class SoundEngine {
     this.ctx = null;
     this.enabled = true;
     this.noiseBuffer = null;
+    this.compressor = null;
   }
 
   init() {
     if (!this.ctx) {
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      if (AudioCtx) this.ctx = new AudioCtx();
+      if (AudioCtx) {
+        this.ctx = new AudioCtx();
+        // コンプレッサー（音圧アップ＆音割れ防止リミッター）
+        this.compressor = this.ctx.createDynamicsCompressor();
+        this.compressor.threshold.setValueAtTime(-12, this.ctx.currentTime);
+        this.compressor.knee.setValueAtTime(30, this.ctx.currentTime);
+        this.compressor.ratio.setValueAtTime(12, this.ctx.currentTime);
+        this.compressor.attack.setValueAtTime(0.003, this.ctx.currentTime);
+        this.compressor.release.setValueAtTime(0.25, this.ctx.currentTime);
+        this.compressor.connect(this.ctx.destination);
+      }
     }
     if (this.ctx && this.ctx.state === 'suspended') {
       this.ctx.resume();
     }
     if (this.ctx && !this.noiseBuffer) {
-      // 2秒分のホワイトノイズ生成（爆発・打撃・風切り音用）
       const bufferSize = this.ctx.sampleRate * 2;
       this.noiseBuffer = this.ctx.createBuffer(1, bufferSize, this.ctx.sampleRate);
       const output = this.noiseBuffer.getChannelData(0);
@@ -994,8 +1008,12 @@ class SoundEngine {
     return this.enabled;
   }
 
-  // 汎用ピッチスウィープトーン
-  playTone(freqStart, type = 'sine', duration = 0.1, gainVal = 0.1, delay = 0, freqEnd = null) {
+  getDest() {
+    return this.compressor || (this.ctx ? this.ctx.destination : null);
+  }
+
+  // 汎用トーン（ピッチベンド対応）
+  playTone(freqStart, type = 'sawtooth', duration = 0.15, gainVal = 0.25, delay = 0, freqEnd = null) {
     if (!this.enabled) return;
     this.init();
     if (!this.ctx) return;
@@ -1014,15 +1032,15 @@ class SoundEngine {
       gain.gain.exponentialRampToValueAtTime(0.0001, t + duration);
 
       osc.connect(gain);
-      gain.connect(this.ctx.destination);
+      gain.connect(this.getDest());
 
       osc.start(t);
       osc.stop(t + duration);
     } catch(e) {}
   }
 
-  // 汎用ノイズバースト（フィルター＆エンベロープ）
-  playNoise(filterType, freqStart, freqEnd, duration = 0.2, gainVal = 0.1, delay = 0) {
+  // 汎用ノイズ（打撃・爆発・斬撃用）
+  playNoise(filterType, freqStart, freqEnd, duration = 0.2, gainVal = 0.3, delay = 0, Q = 2) {
     if (!this.enabled) return;
     this.init();
     if (!this.ctx || !this.noiseBuffer) return;
@@ -1032,6 +1050,7 @@ class SoundEngine {
 
       const filter = this.ctx.createBiquadFilter();
       filter.type = filterType;
+      filter.Q.value = Q;
       const t = this.ctx.currentTime + delay;
       filter.frequency.setValueAtTime(freqStart, t);
       if (freqEnd !== null) {
@@ -1044,75 +1063,72 @@ class SoundEngine {
 
       noise.connect(filter);
       filter.connect(gain);
-      gain.connect(this.ctx.destination);
+      gain.connect(this.getDest());
 
       noise.start(t);
       noise.stop(t + duration);
     } catch(e) {}
   }
 
-  // ボタンタップ音（小気味よいクリスタルクリック）
+  // ボタンタップ音
   playClick() {
-    this.playTone(880, 'sine', 0.04, 0.06);
-    this.playTone(1760, 'sine', 0.03, 0.03, 0.01);
+    this.playTone(1200, 'sine', 0.04, 0.12, 0, 1800);
   }
 
-  // 正解 ＆ 通常魔法攻撃音（キラキラチャイム ＋ シュバッ！と飛翔 ＋ ズバッ！と着弾）
+  // ★【通常攻撃音】ゲームらしい豪快なスラッシュ斬撃 ＆ 爆発インパクト！
+  // チャイム音を廃止し、押した瞬間に「ズバシィィン！ドカァン！」と響く本格バトル音
   playCorrect() {
     this.init();
-    // 1. キラキラクリスタルチャイム
-    const arpeggio = [587.33, 739.99, 880, 1174.66, 1479.98];
-    arpeggio.forEach((freq, idx) => {
-      this.playTone(freq, 'triangle', 0.14, 0.06, idx * 0.032);
-    });
 
-    // 2. 魔法弾の発射風切り音（シュバーン！）
-    this.playNoise('bandpass', 700, 2400, 0.18, 0.08, 0.04);
+    // 1. 鋭いクリティカル金属音「キィィン！」
+    this.playTone(2800, 'triangle', 0.09, 0.25, 0, 1200);
 
-    // 3. 敵への魔法着弾ヒット音（ズバァッ！）
-    setTimeout(() => {
-      this.playNoise('lowpass', 1400, 150, 0.22, 0.16, 0);
-      this.playTone(240, 'sawtooth', 0.18, 0.12, 0, 60);
-      this.playTone(90, 'sine', 0.22, 0.2, 0, 40);
-    }, 180);
+    // 2. 剣で斬り裂く風切りノイズ「ザシュゥゥッ！」
+    this.playNoise('bandpass', 3500, 800, 0.22, 0.35, 0, 3);
+
+    // 3. 重量級打撃インパクト「ドゴォォン！」
+    this.playTone(200, 'sawtooth', 0.22, 0.3, 0.02, 40);
+    this.playTone(100, 'square', 0.2, 0.25, 0.02, 35);
+    this.playNoise('lowpass', 1500, 80, 0.25, 0.35, 0.02);
   }
 
-  // かいしんのはどうほう（エネルギー充填 ＋ 極太レーザー ＋ 重低音大爆発）
+  // ★【かいしんのはどうほう】超極太メガレーザー ＆ 特大爆発！
   playBeam() {
     this.init();
-    // 1. エネルギー充填チャージ音（キュイイイイイン！）
-    this.playTone(180, 'sine', 0.22, 0.12, 0, 2400);
-    this.playTone(360, 'triangle', 0.22, 0.08, 0, 3600);
 
-    // 2. 極太レーザー照射音（ズババババーーーッ！）
-    this.playNoise('bandpass', 800, 3200, 0.45, 0.22, 0.15);
-    this.playTone(130, 'sawtooth', 0.45, 0.18, 0.15, 80);
-    this.playTone(65, 'square', 0.45, 0.15, 0.15, 55);
+    // 1. チャージ「キュイイイイン！」
+    this.playTone(180, 'sine', 0.18, 0.22, 0, 2600);
+    this.playTone(360, 'triangle', 0.18, 0.18, 0, 3800);
 
-    // 3. 画面全体を揺るがす大爆発（ドッカアアアアン！！）
+    // 2. 超極太ビーム照射「ズドドドドドドドーーーッ！」
+    this.playNoise('bandpass', 1200, 4000, 0.5, 0.45, 0.12, 5);
+    this.playTone(140, 'sawtooth', 0.5, 0.35, 0.12, 60);
+    this.playTone(70, 'square', 0.5, 0.3, 0.12, 45);
+
+    // 3. 特大爆発「ドグワッシャァァァン！！」
     setTimeout(() => {
-      this.playNoise('lowpass', 600, 40, 0.65, 0.28, 0);
-      this.playTone(160, 'sawtooth', 0.35, 0.22, 0, 35);
-      this.playTone(80, 'triangle', 0.5, 0.3, 0, 30);
-    }, 280);
+      this.playNoise('lowpass', 800, 30, 0.7, 0.5, 0);
+      this.playTone(180, 'sawtooth', 0.4, 0.35, 0, 30);
+      this.playTone(85, 'triangle', 0.6, 0.4, 0, 25);
+    }, 240);
   }
 
-  // 敵へのダメージヒット音（重みのある「ザシュッ！」「ドゴッ！」）
+  // ★【敵ヒット音】骨太な打撃クラッシュ「バシィッ！ドスッ！」
   playDamage() {
     this.init();
-    this.playNoise('lowpass', 1600, 100, 0.18, 0.2, 0);
-    this.playTone(180, 'sawtooth', 0.16, 0.15, 0, 45);
-    this.playTone(95, 'square', 0.12, 0.12, 0, 40);
+    this.playNoise('lowpass', 2200, 120, 0.18, 0.35, 0);
+    this.playTone(240, 'sawtooth', 0.16, 0.25, 0, 50);
+    this.playTone(110, 'square', 0.14, 0.2, 0, 45);
   }
 
   // 不正解音（可愛い「ポヨン…」）
   playWrong() {
     this.init();
-    this.playTone(380, 'sine', 0.18, 0.12, 0, 220);
-    this.playTone(280, 'triangle', 0.22, 0.1, 0.08, 160);
+    this.playTone(400, 'sine', 0.18, 0.2, 0, 200);
+    this.playTone(280, 'triangle', 0.22, 0.15, 0.06, 140);
   }
 
-  // ステージクリア（勝利のファンファーレ）
+  // ステージクリア（ドラクエ/FF風ブラスファンファーレ）
   playFanfare() {
     this.init();
     const notes = [
@@ -1125,8 +1141,8 @@ class SoundEngine {
       { f: 1046.50,d: 0.6,  t: 1.12 }   // C6
     ];
     notes.forEach(n => {
-      this.playTone(n.f, 'triangle', n.d, 0.14, n.t);
-      this.playTone(n.f * 0.5, 'square', n.d, 0.08, n.t);
+      this.playTone(n.f, 'triangle', n.d, 0.22, n.t);
+      this.playTone(n.f * 0.5, 'square', n.d, 0.14, n.t);
     });
   }
 }
@@ -1944,6 +1960,14 @@ class GameApp {
     document.getElementById('btn-close-rules').addEventListener('click', () => {
       sound.playClick();
       this.modalRules.classList.remove('active');
+    });
+
+    document.getElementById('btn-test-attack').addEventListener('click', () => {
+      sound.playCorrect();
+    });
+
+    document.getElementById('btn-test-beam').addEventListener('click', () => {
+      sound.playBeam();
     });
 
     // スロット戻る
