@@ -348,6 +348,110 @@
       border-color: #ff66b2;
       background: linear-gradient(145deg, #2e0e24 0%, #12030d 100%);
     }
+    
+    /* プリキュア専用技エフェクト（かわいい、痛くない、楽しい！） */
+    .skill-halation-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 230, 255, 0.95) 0%, rgba(236, 72, 153, 0.7) 35%, rgba(168, 85, 247, 0.5) 60%, transparent 85%);
+      animation: anim-halation 0.5s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 22;
+    }
+    @keyframes anim-halation {
+      0% { opacity: 0; transform: scale(0.5); }
+      40% { opacity: 1; transform: scale(1.15) rotate(10deg); filter: brightness(1.5); }
+      100% { opacity: 0; transform: scale(1.4) rotate(25deg); }
+    }
+
+    .skill-skypunch-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(224, 242, 254, 0.95) 0%, rgba(56, 189, 248, 0.75) 40%, rgba(244, 114, 182, 0.4) 70%, transparent 85%);
+      animation: anim-skypunch 0.45s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 22;
+    }
+    @keyframes anim-skypunch {
+      0% { opacity: 0; transform: scale(0.3) translateY(20px); }
+      40% { opacity: 1; transform: scale(1.2) translateY(-10px); }
+      100% { opacity: 0; transform: scale(1.35) translateY(-20px); }
+    }
+
+    .skill-prism-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: conic-gradient(from 180deg at 50% 50%, rgba(255,182,193,0.7), rgba(255,255,180,0.7), rgba(180,255,200,0.7), rgba(180,240,255,0.7), rgba(230,190,255,0.7), rgba(255,182,193,0.7));
+      animation: anim-prism 0.5s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 22;
+    }
+    @keyframes anim-prism {
+      0% { opacity: 0; transform: scale(0.6) rotate(0deg); }
+      50% { opacity: 0.9; transform: scale(1.1) rotate(90deg); filter: brightness(1.4); }
+      100% { opacity: 0; transform: scale(1.3) rotate(180deg); }
+    }
+
+    .skill-tact-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.95) 0%, rgba(251, 113, 133, 0.75) 35%, rgba(254, 215, 170, 0.6) 65%, transparent 85%);
+      animation: anim-tact 0.5s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 22;
+    }
+    @keyframes anim-tact {
+      0% { opacity: 0; transform: scale(0.4) rotate(-30deg); }
+      45% { opacity: 1; transform: scale(1.2) rotate(15deg); }
+      100% { opacity: 0; transform: scale(1.4) rotate(45deg); }
+    }
+
+    .skill-crescendo-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.95) 0%, rgba(244, 63, 94, 0.8) 30%, rgba(192, 132, 252, 0.5) 60%, transparent 85%);
+      animation: anim-crescendo 0.52s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 22;
+    }
+    @keyframes anim-crescendo {
+      0% { opacity: 0; transform: scale(0.3); }
+      30% { opacity: 0.7; transform: scale(0.8); }
+      60% { opacity: 1; transform: scale(1.25); filter: brightness(1.6); }
+      100% { opacity: 0; transform: scale(1.45); }
+    }
+
+    .skill-emotion-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 1) 0%, rgba(245, 158, 11, 0.6) 25%, rgba(236, 72, 153, 0.7) 50%, rgba(99, 102, 241, 0.5) 75%, transparent 90%);
+      animation: anim-emotion 0.52s ease-out forwards;
+      pointer-events: none;
+      display: none;
+      z-index: 22;
+    }
+    @keyframes anim-emotion {
+      0% { opacity: 0; transform: scale(0.6); }
+      40% { opacity: 1; transform: scale(1.18); filter: brightness(1.7); }
+      100% { opacity: 0; transform: scale(1.38); }
+    }
+
+    /* プリキュアの可愛いリアクション（痛がらない！ピョコピョコ跳ねてキラキラ輝く） */
+    @keyframes anim-precure-joy {
+      0% { transform: translateY(0) scale(1); filter: brightness(1); }
+      30% { transform: translateY(-28px) scale(1.08); filter: brightness(1.35) drop-shadow(0 0 16px #ff99cc); }
+      60% { transform: translateY(-8px) scale(0.98); }
+      100% { transform: translateY(0) scale(1); filter: brightness(1); }
+    }
+    .precure-joy {
+      animation: anim-precure-joy 0.45s ease-out;
+    }
+
     .world-card.precure-theme:active {
       border-color: #ff99cc;
       background: linear-gradient(145deg, #421534 0%, #1a0514 100%);
@@ -1161,6 +1265,14 @@
 
       <div class="effect-overlay">
         <!-- 多彩なランダム技エフェクト -->
+                <!-- プリキュア専用技オーバーレイ -->
+        <div class="skill-halation-overlay" id="effect-halation"></div>
+        <div class="skill-skypunch-overlay" id="effect-skypunch"></div>
+        <div class="skill-prism-overlay" id="effect-prism"></div>
+        <div class="skill-tact-overlay" id="effect-tact"></div>
+        <div class="skill-crescendo-overlay" id="effect-crescendo"></div>
+        <div class="skill-emotion-overlay" id="effect-emotion"></div>
+
         <div class="skill-flame-overlay" id="effect-flame"></div>
         <div class="skill-thunder-overlay" id="effect-thunder"></div>
         <div class="skill-blizzard-overlay" id="effect-blizzard"></div>
@@ -1445,7 +1557,192 @@ class SoundEngine {
   }
 
   // プレイヤーダメージ音（ミュウツー戦のミス時：ドスッ！画面揺れ）
-  playPlayerDamage() {
+  // ==========================================
+  // プリキュア専用サウンド（かわいい・痛くない・楽しい！）
+  // ==========================================
+  playHalation() {
+    // マジェスティックハレーション：神秘的なベル＆ハープのきらめくアルペジオ
+    this.init();
+    const now = this.ctx.currentTime;
+    const notes = [523.25, 659.25, 783.99, 1046.50, 1318.51, 1567.98]; // C5, E5, G5, C6, E6, G6
+    notes.forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.05);
+      
+      gain.gain.setValueAtTime(0, now + idx * 0.05);
+      gain.gain.linearRampToValueAtTime(0.2, now + idx * 0.05 + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.05 + 0.45);
+      
+      osc.connect(gain);
+      gain.connect(this.master);
+      osc.start(now + idx * 0.05);
+      osc.stop(now + idx * 0.05 + 0.46);
+    });
+  }
+
+  playSkyPunch() {
+    // スカイパンチ：爽快な風切り音 ＋ ポーンと弾ける可愛い星の音
+    this.init();
+    const now = this.ctx.currentTime;
+    
+    // ポップ音
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(350, now);
+    osc.frequency.exponentialRampToValueAtTime(880, now + 0.12);
+    
+    gain.gain.setValueAtTime(0.3, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+    
+    osc.connect(gain);
+    gain.connect(this.master);
+    osc.start(now);
+    osc.stop(now + 0.36);
+
+    // キラリン音
+    const osc2 = this.ctx.createOscillator();
+    const gain2 = this.ctx.createGain();
+    osc2.type = 'triangle';
+    osc2.frequency.setValueAtTime(1320, now + 0.08);
+    gain2.gain.setValueAtTime(0.18, now + 0.08);
+    gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.4);
+    osc2.connect(gain2);
+    gain2.connect(this.master);
+    osc2.start(now + 0.08);
+    osc2.stop(now + 0.41);
+  }
+
+  playPrism() {
+    // プリズムショット：パステルトイピアノ風の可愛いポコポコメロディ
+    this.init();
+    const now = this.ctx.currentTime;
+    const freqs = [659.25, 783.99, 987.77, 1318.51]; // E5, G5, B5, E6
+    freqs.forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.07);
+      
+      gain.gain.setValueAtTime(0.24, now + idx * 0.07);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.07 + 0.22);
+      
+      osc.connect(gain);
+      gain.connect(this.master);
+      osc.start(now + idx * 0.07);
+      osc.stop(now + idx * 0.07 + 0.23);
+    });
+  }
+
+  playWonderfulTact() {
+    // ワンダフルタクト：魔法のタクトがキュルルンと回転するファンタジーサウンド
+    this.init();
+    const now = this.ctx.currentTime;
+    
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'sine';
+    
+    // 周波数がスルスルと駆け上がる
+    osc.frequency.setValueAtTime(440, now);
+    osc.frequency.exponentialRampToValueAtTime(1400, now + 0.25);
+    
+    gain.gain.setValueAtTime(0.22, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.38);
+    
+    osc.connect(gain);
+    gain.connect(this.master);
+    osc.start(now);
+    osc.stop(now + 0.39);
+
+    // ベルの余韻
+    const bell = this.ctx.createOscillator();
+    const bGain = this.ctx.createGain();
+    bell.type = 'triangle';
+    bell.frequency.setValueAtTime(1760, now + 0.15);
+    bGain.gain.setValueAtTime(0.2, now + 0.15);
+    bGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    bell.connect(bGain);
+    bGain.connect(this.master);
+    bell.start(now + 0.15);
+    bell.stop(now + 0.51);
+  }
+
+  playCrescendo() {
+    // ウインククレッシェンド：トクン♡と鼓動するようにハートが大きくなる音
+    this.init();
+    const now = this.ctx.currentTime;
+    
+    // 心音風ベース
+    const bass = this.ctx.createOscillator();
+    const bGain = this.ctx.createGain();
+    bass.type = 'sine';
+    bass.frequency.setValueAtTime(130, now);
+    bass.frequency.exponentialRampToValueAtTime(65, now + 0.18);
+    bGain.gain.setValueAtTime(0.35, now);
+    bGain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+    bass.connect(bGain);
+    bGain.connect(this.master);
+    bass.start(now);
+    bass.stop(now + 0.26);
+
+    // クレッシェンドするきらめき音
+    const chime = this.ctx.createOscillator();
+    const cGain = this.ctx.createGain();
+    chime.type = 'triangle';
+    chime.frequency.setValueAtTime(880, now + 0.1);
+    chime.frequency.linearRampToValueAtTime(1500, now + 0.35);
+    cGain.gain.setValueAtTime(0.05, now + 0.1);
+    cGain.gain.linearRampToValueAtTime(0.25, now + 0.3);
+    cGain.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+    chime.connect(cGain);
+    cGain.connect(this.master);
+    chime.start(now + 0.1);
+    chime.stop(now + 0.51);
+  }
+
+  playEmotion() {
+    // ハイエモーション：最高潮に盛り上がるハッピーなアイドルファンファーレ
+    this.init();
+    const now = this.ctx.currentTime;
+    const chord = [523.25, 659.25, 783.99, 1046.50]; // Cメジャー
+    chord.forEach((freq, idx) => {
+      const osc = this.ctx.createOscillator();
+      const gain = this.ctx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.04);
+      gain.gain.setValueAtTime(0.18, now + idx * 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.04 + 0.4);
+      osc.connect(gain);
+      gain.connect(this.master);
+      osc.start(now + idx * 0.04);
+      osc.stop(now + idx * 0.04 + 0.41);
+    });
+  }
+
+  playPrecureJoy() {
+    // プリキュアの可愛い喜び音（ピョコリン♪）
+    this.init();
+    const now = this.ctx.currentTime;
+    const osc = this.ctx.createOscillator();
+    const gain = this.ctx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(523.25, now);
+    osc.frequency.setValueAtTime(783.99, now + 0.08);
+    osc.frequency.setValueAtTime(1046.50, now + 0.16);
+    
+    gain.gain.setValueAtTime(0.22, now);
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+    
+    osc.connect(gain);
+    gain.connect(this.master);
+    osc.start(now);
+    osc.stop(now + 0.36);
+  }
+
+    playPlayerDamage() {
     this.init();
     this.playNoise('lowpass', 900, 50, 0.3, 0.45, 0);
     this.playTone(160, 'square', 0.25, 0.35, 0, 35);
@@ -2696,6 +2993,17 @@ class GameApp {
       { id: 'black', name: 'くろのオーブ', color: '#a855f7', title: 'やみの力' }
     ];
 
+    // プリキュア専用技一覧（かわいい、痛くない、楽しい！）
+    this.precureSkills = [
+      { id: "halation", name: "💖 マジェスティックハレーション！", sound: "playHalation", overlay: "effect-halation" },
+      { id: "skypunch", name: "💫 スカイパンチ！", sound: "playSkyPunch", overlay: "effect-skypunch" },
+      { id: "prism", name: "🌈 プリズムショット！", sound: "playPrism", overlay: "effect-prism" },
+      { id: "tact", name: "🪄 ワンダフルタクト！", sound: "playWonderfulTact", overlay: "effect-tact" },
+      { id: "crescendo", name: "✨ ウインククレッシェンド！", sound: "playCrescendo", overlay: "effect-crescendo" },
+      { id: "emotion", name: "🎶 ハイエモーション！", sound: "playEmotion", overlay: "effect-emotion" }
+    ];
+    this.lastPrecureSkillIndex = -1;
+
     // ランダム発動技一覧（全7種：波動砲も含め完全ランダム）
     this.battleSkills = [
       { id: "flame", name: "🔥 かえんほうしゃ！", sound: "playFlame", overlay: "effect-flame" },
@@ -3247,17 +3555,32 @@ class GameApp {
       const isCritical = this.triggerRandomSkill();
 
       setTimeout(() => {
-        sound.playDamage();
-        this.bossHp = Math.max(0, this.bossHp - 1);
-        this.updateHpBar();
+        if (this.currentWorld === 'precure') {
+          // プリキュア専用：痛がらない！ピョコピョコ跳ねてキラキラ喜ぶ可愛いリアクション
+          sound.playPrecureJoy();
+          this.bossHp = Math.max(0, this.bossHp - 1);
+          this.updateHpBar();
 
-        this.bossSprite.classList.remove('float-anim');
-        this.bossSprite.classList.add('boss-damage');
+          this.bossSprite.classList.remove('float-anim');
+          this.bossSprite.classList.add('precure-joy');
 
-        setTimeout(() => {
-          this.bossSprite.classList.remove('boss-damage');
-          this.bossSprite.classList.add('float-anim');
-        }, 400);
+          setTimeout(() => {
+            this.bossSprite.classList.remove('precure-joy');
+            this.bossSprite.classList.add('float-anim');
+          }, 450);
+        } else {
+          sound.playDamage();
+          this.bossHp = Math.max(0, this.bossHp - 1);
+          this.updateHpBar();
+
+          this.bossSprite.classList.remove('float-anim');
+          this.bossSprite.classList.add('boss-damage');
+
+          setTimeout(() => {
+            this.bossSprite.classList.remove('boss-damage');
+            this.bossSprite.classList.add('float-anim');
+          }, 400);
+        }
 
         if (this.bossHp <= 0) {
           setTimeout(() => {
@@ -3300,8 +3623,12 @@ class GameApp {
           this.isInputLocked = false;
         }, 800);
       } else {
-        // 通常ステージ：優しくリトライ
-        this.showFloatText("おしい！ もういちど！");
+        // プリキュアワールドはさらに優しく可愛い励まし
+        if (this.currentWorld === 'precure') {
+          this.showFloatText("おしい！ もういっかい♡");
+        } else {
+          this.showFloatText("おしい！ もういちど！");
+        }
         setTimeout(() => {
           btnElement.classList.remove('wrong-highlight');
           this.isInputLocked = false;
@@ -3312,6 +3639,10 @@ class GameApp {
 
   // 多彩なランダムわざ発動演出（直前と同じ技が続かないよう抽選）
   triggerRandomSkill() {
+    if (this.currentWorld === 'precure') {
+      return this.triggerPrecureSkill();
+    }
+
     let availableIndices = [];
     for (let i = 0; i < this.battleSkills.length; i++) {
       if (i !== this.lastSkillIndex) availableIndices.push(i);
@@ -3340,6 +3671,33 @@ class GameApp {
     this.showFloatText(text);
 
     return (skill.id === 'beam');
+  }
+
+  // プリキュア専用の技演出（かわいい、痛くない、楽しい！）
+  triggerPrecureSkill() {
+    let availableIndices = [];
+    for (let i = 0; i < this.precureSkills.length; i++) {
+      if (i !== this.lastPrecureSkillIndex) availableIndices.push(i);
+    }
+    const chosenIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+    this.lastPrecureSkillIndex = chosenIndex;
+    const skill = this.precureSkills[chosenIndex];
+
+    if (sound[skill.sound]) sound[skill.sound]();
+
+    const overlay = document.getElementById(skill.overlay);
+    if (overlay) {
+      overlay.style.display = 'block';
+      setTimeout(() => { overlay.style.display = 'none'; }, 480);
+    }
+
+    let text = skill.name;
+    if (this.combo >= 2) {
+      text += ' (' + this.combo + 'コンボ♪)';
+    }
+    this.showFloatText(text);
+
+    return false;
   }
 
   triggerMagicEffect() {
